@@ -7,30 +7,49 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
 import { NavbarModule} from './shared/navbar/navbar.module';
 import { FixedPluginModule} from './shared/fixedplugin/fixedplugin.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { LoginComponent } from './login/login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
+import { NewsDetailComponent } from './pages/news-detail/news-detail.component';
+import { StudentInfoComponent } from './pages/student-info/student-info.component';
+import { FormsModule, NgModel } from "@angular/forms";
+import { NewsSaveComponent } from './pages/news-save/news-save.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    LoginComponent,
+    AdminLayoutComponent,
+    NewsDetailComponent,
+    StudentInfoComponent,
+    NewsSaveComponent
   ],
   imports: [
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes,{
       useHash: true
     }),
+    HttpClientModule,
     SidebarModule,
     NavbarModule,
     ToastrModule.forRoot(),
     FooterModule,
-    FixedPluginModule
+    FixedPluginModule,
+    NgbModule,
+    FormsModule,
+    
   ],
-  providers: [],
+  providers: [
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+        JwtHelperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,20 @@
+
+<div class = "a">
+    <div class = "translate card col-md-4 container">
+        <div class = "card-header">
+            <h4>Đăng nhập</h4>
+            <hr>
+        </div>
+        <div class = "form-group card-body" (ngSubmit) = "login(student)">
+                <label>Tên đăng nhập</label><br>
+                <input class = "form-control" placeholder="Tên đăng nhập" [(ngModel)]="student.username"><br>
+                <label >Mật khẩu</label><br>
+                <input type = "password" class = "form-control" placeholder="Mật khẩu" [(ngModel)]="student.password" ><br>
+                <a class= "btn btn-primary col-md-12" type = "submit" (click) = "login(student)">Đăng nhập</a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+
