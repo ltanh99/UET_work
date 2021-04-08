@@ -15,6 +15,7 @@ import { LoginComponent } from 'app/login/login.component';
 import { NewsDetailComponent } from 'app/pages/news-detail/news-detail.component';
 import { StudentInfoComponent } from 'app/pages/student-info/student-info.component';
 import { NewsSaveComponent } from 'app/pages/news-save/news-save.component';
+import { EducationComponent } from 'app/pages/education/education.component';
 
 export const AdminLayoutRoutes: Routes = [
 
@@ -23,11 +24,12 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'cong-viec/chi-tiet',     component: NewsDetailComponent},
     { path: 'cong-viec-da-luu',     component: NewsSaveComponent},
     { path: 'dashboard',      component: DashboardComponent },
+    { path: 'dao-tao',      component: EducationComponent },
     { path: 'user',           component: UserComponent },
     { path: 'table',          component: TableComponent },
     { path: 'typography',     component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent }
+    // { path: 'upgrade',        component: UpgradeComponent }
 ];

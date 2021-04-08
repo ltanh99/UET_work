@@ -1,0 +1,32 @@
+<div class="row">
+    
+    <div class="card col-md-12 pb-3" *ngFor="let item of listSeminar">
+        <div class = "card-body d-flex justify-content-between">
+            <div class="col-md-2">
+                <!-- <img src="..." class="rounded" alt="..."> -->
+                <div id="profileImage">LA</div>
+            </div>
+            <div class="col-md-10" style="line-height: 28px;font-size: 16px;">
+                <div class="title">Thảo luận về UI/UX</div>
+                <div class="company">
+                    <span>Đơn vị tổ chức: Công ty cổ phần misa</span>
+                </div>
+                <div class="speaker">
+                    <span>Diễn giả: Công ty cổ phần misa</span>
+                </div>
+                <div class="time">
+                    <span>Thời gian diễn ra: 8h30 5/6/2021</span>
+                </div>
+                <div class="seminar-description">
+                    <span>Mô tả: Chia sẻ về tầm quan trọng của UI/UX trong công nghệ hiện nay</span>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button mat-button type="button" class="btn btn-outline-primary" (click)="viewDetail(item)">Xem chi tiết</button>
+                    <button type="button" class="btn btn-outline-primary ml-2">Đăng ký</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>

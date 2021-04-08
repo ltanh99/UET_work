@@ -13,10 +13,10 @@ export const ROUTES: RouteInfo[] = [
     { path: '/cong-viec',         title: 'Công việc',             icon:'nc-diamond',    class: '' },
     { path: '/cong-viec-da-luu',          title: 'Đã lưu',              icon:'nc-favourite-28',      class: '' },
     { path: '/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' },
-    { path: '/user',          title: 'User Profile',      icon:'nc-single-02',  class: '' },
+    { path: '/dao-tao',          title: 'Đào tạo',      icon:'nc-caps-small',  class: '' },
     { path: '/table',         title: 'Table List',        icon:'nc-tile-56',    class: '' },
     { path: '/typography',    title: 'Typography',        icon:'nc-caps-small', class: '' },
-    { path: '/upgrade',       title: 'Upgrade to PRO',    icon:'nc-spaceship',  class: 'active-pro' },
+    // { path: '/upgrade',       title: 'Upgrade to PRO',    icon:'nc-spaceship',  class: 'active-pro' },
 ];
 
 @Component({
