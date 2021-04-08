@@ -20,6 +20,8 @@ import { NewsDetailComponent } from './pages/news-detail/news-detail.component';
 import { StudentInfoComponent } from './pages/student-info/student-info.component';
 import { FormsModule, NgModel } from "@angular/forms";
 import { NewsSaveComponent } from './pages/news-save/news-save.component';
+import { CompanyComponent } from './pages/company/company.component';
+import { CompanyDetailComponent } from './pages/company-detail/company-detail.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { NewsSaveComponent } from './pages/news-save/news-save.component';
     AdminLayoutComponent,
     NewsDetailComponent,
     StudentInfoComponent,
-    NewsSaveComponent
+    NewsSaveComponent,
+    CompanyComponent,
+    CompanyDetailComponent
   ],
   imports: [
     BrowserAnimationsModule,

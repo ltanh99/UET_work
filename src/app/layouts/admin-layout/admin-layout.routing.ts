@@ -15,6 +15,8 @@ import { LoginComponent } from 'app/login/login.component';
 import { NewsDetailComponent } from 'app/pages/news-detail/news-detail.component';
 import { StudentInfoComponent } from 'app/pages/student-info/student-info.component';
 import { NewsSaveComponent } from 'app/pages/news-save/news-save.component';
+import { CompanyComponent } from 'app/pages/company/company.component';
+import { CompanyDetailComponent } from 'app/pages/company-detail/company-detail.component';
 
 export const AdminLayoutRoutes: Routes = [
 
@@ -22,6 +24,9 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'cong-viec',          component: TinTdComponent },
     { path: 'cong-viec/chi-tiet',     component: NewsDetailComponent},
     { path: 'cong-viec-da-luu',     component: NewsSaveComponent},
+    { path: 'cong-ty',        component: CompanyComponent},
+    { path: 'cong-ty/chi-tiet',        component: CompanyDetailComponent},
+
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user',           component: UserComponent },
     { path: 'table',          component: TableComponent },
