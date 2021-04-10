@@ -9,7 +9,7 @@
             <i class="nc-icon nc-minimal-down"></i><label (click)="clickSearch()"> Tìm kiếm nâng cao</label>
           </div>
         </div>
-        <div [ngClass]="{'display-none' : toggleSearch, '': !toggleSearch}">
+        <div [ngClass]="{'' : toggleSearch, 'display-none': !toggleSearch}">
           <div class = "col-md-12 d-flex justify-content-between align-items-center p-0">
             <div class="col-md-3">
               <p class = "mb-1">Thời gian cập nhật</p>

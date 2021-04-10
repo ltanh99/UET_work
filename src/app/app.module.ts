@@ -22,7 +22,7 @@ import { FormsModule, NgModel } from "@angular/forms";
 import { NewsSaveComponent } from './pages/news-save/news-save.component';
 import { CompanyComponent } from './pages/company/company.component';
 import { CompanyDetailComponent } from './pages/company-detail/company-detail.component';
-
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,7 @@ import { CompanyDetailComponent } from './pages/company-detail/company-detail.co
     FixedPluginModule,
     NgbModule,
     FormsModule,
-    
+    MatDialogModule
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
