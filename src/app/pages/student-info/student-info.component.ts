@@ -5,6 +5,7 @@ import { GetInfoService } from 'app/service/get-info.service';
 import { studentInfo } from 'app/ts/student-info';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @Component({
   selector: 'app-student-info',
@@ -70,10 +71,18 @@ export class StudentInfoComponent implements OnInit {
     this.isEdit = !this.isEdit;
   }
 
-  // openDialog() {
-  //   const dialogConfig = new MatDialogConfig();
-  //   this.dialog.open(PopupChangePasswordComponent, dialogConfig);
-  // }
+  openDialog() {
+    // const dialogConfig = new MatDialogConfig();
+    // this.dialog.open(ChangePasswordComponent, dialogConfig);
+    // console.log(e);
+    let dialogRef = this.dialog.open(ChangePasswordComponent, {
+      width: '600px',
+      height: '350px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   
 }

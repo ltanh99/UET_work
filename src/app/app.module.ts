@@ -24,6 +24,7 @@ import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dia
 import { BrowserModule } from "@angular/platform-browser";
 import { EducationComponent } from './pages/education/education.component';
 import { DetailEducationComponent } from './pages/education/detail-education/detail-education.component';
+import { ChangePasswordComponent } from './pages/student-info/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { DetailEducationComponent } from './pages/education/detail-education/det
     NewsSaveComponent,
     EducationComponent,
     DetailEducationComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { DetailEducationComponent } from './pages/education/detail-education/det
     MatDialogModule
   ],
   entryComponents: [
-    DetailEducationComponent
+    DetailEducationComponent,
+    ChangePasswordComponent
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
