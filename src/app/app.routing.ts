@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 export const AppRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'news',
+    redirectTo: 'cong-viec',
     pathMatch: 'full',
     //canActivate: [AuthGuard] 
   },
@@ -16,12 +16,12 @@ export const AppRoutes: Routes = [
   {
     path: '',
     component: AdminLayoutComponent,
-    // canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     children: [
         {
       path: '',
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule',
-      // canActivate: [AuthGuard],
+      //canActivate: [AuthGuard],
   }],
 },
   {

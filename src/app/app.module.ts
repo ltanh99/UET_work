@@ -18,8 +18,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
 import { NewsDetailComponent } from './pages/news-detail/news-detail.component';
 import { StudentInfoComponent } from './pages/student-info/student-info.component';
-import { FormsModule, NgModel, ReactiveFormsModule  } from "@angular/forms";
+import { FormsModule, NgModel } from "@angular/forms";
 import { NewsSaveComponent } from './pages/news-save/news-save.component';
+import { CompanyComponent } from './pages/company/company.component';
+import { CompanyDetailComponent } from './pages/company-detail/company-detail.component';
 import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 import { BrowserModule } from "@angular/platform-browser";
 import { EducationComponent } from './pages/education/education.component';
@@ -37,6 +39,8 @@ import { ChangePasswordComponent } from './pages/student-info/change-password/ch
     EducationComponent,
     DetailEducationComponent,
     ChangePasswordComponent,
+    CompanyComponent,
+    CompanyDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -61,10 +65,8 @@ import { ChangePasswordComponent } from './pages/student-info/change-password/ch
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
         JwtHelperService
   ],
-  bootstrap: [AppComponent],
-
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
