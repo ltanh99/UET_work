@@ -21,8 +21,11 @@ import { StudentInfoComponent } from './pages/student-info/student-info.componen
 import { FormsModule, NgModel } from "@angular/forms";
 import { NewsSaveComponent } from './pages/news-save/news-save.component';
 import { CompanyComponent } from './pages/company/company.component';
-import { CompanyDetailComponent } from './pages/company-detail/company-detail.component';
+import { CompanyDetailComponent } from './pages/company/company-detail/company-detail.component';
 import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+import { IntroductionComponent } from './pages/company/introduction/introduction.component';
+import { NewsOfCompanyComponent } from "./pages/company/news-of-company/news-of-company.component";
+import { ApplyComponent } from './pages/news-detail/apply/apply.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dia
     StudentInfoComponent,
     NewsSaveComponent,
     CompanyComponent,
-    CompanyDetailComponent
+    CompanyDetailComponent,
+    IntroductionComponent,
+    NewsOfCompanyComponent,
+    ApplyComponent
   ],
   imports: [
     BrowserAnimationsModule,
