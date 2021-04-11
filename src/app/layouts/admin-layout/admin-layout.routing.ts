@@ -16,7 +16,7 @@ import { NewsDetailComponent } from 'app/pages/news-detail/news-detail.component
 import { StudentInfoComponent } from 'app/pages/student-info/student-info.component';
 import { NewsSaveComponent } from 'app/pages/news-save/news-save.component';
 import { CompanyComponent } from 'app/pages/company/company.component';
-import { CompanyDetailComponent } from 'app/pages/company-detail/company-detail.component';
+import { CompanyDetailComponent } from 'app/pages/company/company-detail/company-detail.component';
 import { EducationComponent } from 'app/pages/education/education.component';
 import { MessageComponent } from 'app/pages/message/message.component';
 
