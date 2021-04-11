@@ -24,6 +24,9 @@ import { BrowserModule } from "@angular/platform-browser";
 // import { EducationComponent } from './pages/education/education.component';
 // import { DetailEducationComponent } from './pages/education/detail-education/detail-education.component';
 import { ChangePasswordComponent } from './pages/student-info/change-password/change-password.component';
+import { EducationComponent } from './pages/education/education.component';
+import { DetailEducationComponent } from './pages/education/detail-education/detail-education.component';
+import { MessageComponent } from './pages/message/message.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { ChangePasswordComponent } from './pages/student-info/change-password/ch
     // DetailEducationComponent,
     ChangePasswordComponent,
     CompanyComponent,
-    CompanyDetailComponent
+    CompanyDetailComponent,
+    EducationComponent,
+    DetailEducationComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

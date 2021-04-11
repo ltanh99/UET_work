@@ -1,0 +1,88 @@
+<div class = "form-group">
+    <div class = "form-control col-md-12  pb-3">
+        <div *ngIf="!toggleSearch" class = "col-md-12 d-flex justify-content-between align-items-center">
+          <input class = "form-control col-md-10" placeholder="Nhập tên công việc, vị trí ứng tuyển...">
+          <button class = "btn col-md-2"><i class="nc-icon nc-zoom-split mr-1"></i> Tìm kiếm</button>
+        </div>
+        <div class = "col-md-12 d-flex justify-content-center align-items-center">
+            <button *ngIf="!toggleSearch" class = "btn col-md-2" style="height: 36px;" (click)="clickSearch()"><i class="nc-icon nc-minimal-down mr-1"></i><label> Tìm kiếm nâng cao</label></button>
+            <button *ngIf="toggleSearch" class = "btn col-md-2" style="height: 36px;" (click)="clickSearch()"><i class="nc-icon nc-minimal-up mr-1"></i><label> Thu gọn</label></button>
+        </div>
+        <div *ngIf="toggleSearch">
+          <div class = "col-md-12 d-flex justify-content-between align-items-center p-0">
+            <div class="col-md-3">
+              <p class = "mb-1">Thời gian cập nhật</p>
+              <select class="form-control">
+                <option>Gần nhất</option>
+                <option>Xa nhất</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <p class = "mb-1">Ngành nghề</p>
+              <select class="form-control">
+                <option>Tất cả ngành nghề</option>
+                <option>Công nghệ thông tin</option>
+                <option>Lập trình Web</option>
+                <option>4</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <p class = "mb-1">Vị trí công ty</p>
+              <select class="form-control">
+                <option>Tất cả vị trí</option>
+                <option>Cầu Giấy</option>
+                <option>Nam Từ Liêm</option>
+                <option>Hai Bà Trưng</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <p class = "mb-1">Loại hình làm việc</p>
+              <select class="form-control">
+                <option>Tất cả</option>
+                <option>Fulltime</option>
+                <option>Partime</option>
+                <option>Hải Dương</option>
+              </select>
+            </div>
+          </div>
+          <div class = "col-md-12 d-flex justify-content-center align-items-center">
+            <button class = "btn col-md-2" style="height: 36px;"><i class="nc-icon nc-zoom-split mr-1"></i><label> Tìm kiếm</label></button>
+        </div>
+        </div>    
+    </div>
+</div>
+<div class="row"> 
+    <div class="card col-md-12 pb-3" *ngFor="let item of listSeminar">
+        <div class = "card-body d-flex justify-content-between">
+            <div class="col-md-2">
+                <!-- <img src="..." class="rounded" alt="..."> -->
+                <div id="profileImage">LA</div>
+            </div>
+            <div class="col-md-10" style="line-height: 28px;font-size: 16px;">
+                <div class="title">Thảo luận về UI/UX</div>
+                <div class="company">
+                    <span>Đơn vị tổ chức: Công ty cổ phần misa</span>
+                </div>
+                <div class="speaker">
+                    <span>Diễn giả: Công ty cổ phần misa</span>
+                </div>
+                <div class="time">
+                    <span>Thời gian diễn ra: 8h30 5/6/2021</span>
+                </div>
+                <!-- <div class="seminar-description">
+                    <span>Mô tả: Chia sẻ về tầm quan trọng của UI/UX trong công nghệ hiện nay</span>
+                </div> -->
+
+                <div>
+                    <div>Thông tin liên hệ: ms.Ab - 0987654321</div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button mat-button type="button" class="btn btn-outline-primary" (click)="viewDetail(item)">Xem chi tiết</button>
+                    <button type="button" class="btn btn-outline-primary ml-2">Đăng ký</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>

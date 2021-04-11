@@ -17,6 +17,8 @@ import { StudentInfoComponent } from 'app/pages/student-info/student-info.compon
 import { NewsSaveComponent } from 'app/pages/news-save/news-save.component';
 import { CompanyComponent } from 'app/pages/company/company.component';
 import { CompanyDetailComponent } from 'app/pages/company-detail/company-detail.component';
+import { EducationComponent } from 'app/pages/education/education.component';
+import { MessageComponent } from 'app/pages/message/message.component';
 
 export const AdminLayoutRoutes: Routes = [
 
@@ -26,6 +28,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'cong-viec-da-luu',     component: NewsSaveComponent},
     { path: 'cong-ty',        component: CompanyComponent},
     { path: 'cong-ty/chi-tiet',        component: CompanyDetailComponent},
+    { path: 'dao-tao',        component: EducationComponent},
+    { path: 'tin-nhan',        component: MessageComponent},
 
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user',           component: UserComponent },
