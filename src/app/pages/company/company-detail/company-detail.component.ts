@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyDetailComponent implements OnInit {
 
+  isIntroTab = true;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  changeTab(e) {
+    if (e == 0) {
+      this.isIntroTab = true;
+    } else {
+      this.isIntroTab = false;
+    }
   }
 
 }
