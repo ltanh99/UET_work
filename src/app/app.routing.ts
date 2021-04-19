@@ -8,22 +8,22 @@ export const AppRoutes: Routes = [
     path: '',
     redirectTo: 'cong-viec',
     pathMatch: 'full',
-    //canActivate: [AuthGuard] 
+    canActivate: [AuthGuard]
   },
-  { path: 'login',           component: LoginComponent,
-
-},
+  {
+    path: 'login', component: LoginComponent,
+  },
   {
     path: '',
     component: AdminLayoutComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
-        {
-      path: '',
-      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule',
-      //canActivate: [AuthGuard],
-  }],
-},
+      {
+        path: '',
+        loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule',
+        canActivate: [AuthGuard],
+      }],
+  },
   {
     path: '**',
     redirectTo: 'news',

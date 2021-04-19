@@ -1,1 +1,49 @@
-<p>message works!</p>
+<div class="container">
+    <h3 class=" text-center">User 1</h3>
+    <div class="messaging">
+      <div class="inbox_msg">
+        <div class="inbox_people">
+          <div class="headind_srch">
+            <div class="recent_heading">
+              <select class="select_users">
+                <option value="" selected disabled hidden>Chọn user</option>
+                <option value="12">Le Thi B</option>
+              </select>
+              <div class="create_group_box ml-2">
+                <input type="checkbox" id="isGroup" value="true"> tạo nhóm<br>
+                <div class="set_name_and_create_group"  style="display: none;">
+                  <input type="text" class="name_group" placeholder="tên nhóm"/>
+                  <button class="create_group_btn">Tạo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="inbox_chat">
+            <!-- <div class="chat_list " *ngFor="let item of listConversation" key="">
+                <div class="chat_people">
+                    <div class="chat_img"> <img src="${user.avatar}" alt="sunil"> </div>
+                    <div class="chat_ib">
+                        <h5>${convs[i].isGroup ? convs[i].name : user.name} <span class="chat_date"></span></h5>
+                        <p>...</p>
+                    </div>
+                    </div>
+              </div> -->
+          </div>
+        </div>
+        <div class="mesgs">
+          <div class="mesgs_container">
+            <div class="msg_history"></div>
+            <div class="users_typing"></div>
+          </div>
+          <div class="type_msg">
+            <div class="input_msg_write">
+              <input type="text" class="write_msg" placeholder="Type a message" />
+              <input type="file" name="file_input" id="file_input">
+              <button class="msg_send_btn" type="button">
+                <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

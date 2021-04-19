@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { GetInfoService } from 'app/service/get-info.service';
 import { DetailEducationComponent } from './detail-education/detail-education.component';
 
 @Component({
@@ -10,13 +11,23 @@ import { DetailEducationComponent } from './detail-education/detail-education.co
 export class EducationComponent implements OnInit {
 
   listSeminar: Array<any>;
+  listCompany: Array<any> = [1];
+  listCompanyData: Array<any> = [];
   toggleSearch = false;
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public getInfoService: GetInfoService 
   ) { }
 
   ngOnInit(): void {
-    this.listSeminar = [1,2,3]
+
+          this.getInfoService.getEducation(1,20, '').subscribe(res => {
+            if (res) {
+              console.log(res);
+              this.listSeminar = res.rows
+            }
+          })
+    
   }
 
 

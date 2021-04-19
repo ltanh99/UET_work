@@ -14,6 +14,8 @@ export class AuthGuardService implements CanActivate{
       localStorage.setItem('token', '');
       localStorage.setItem('userName', '');
       localStorage.setItem('password', '');
+      localStorage.setItem('session', '');
+      localStorage.setItem('common-info', '');
 
       return false;
     }

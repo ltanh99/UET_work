@@ -19,24 +19,27 @@ import { CompanyComponent } from 'app/pages/company/company.component';
 import { CompanyDetailComponent } from 'app/pages/company/company-detail/company-detail.component';
 import { EducationComponent } from 'app/pages/education/education.component';
 import { MessageComponent } from 'app/pages/message/message.component';
+import { AuthGuardService  as AuthGuard  } from 'app/auth/auth-guard.service';
+
 
 export const AdminLayoutRoutes: Routes = [
 
-    { path: 'thong-tin-sinh-vien', component: StudentInfoComponent},
-    { path: 'cong-viec',          component: TinTdComponent },
-    { path: 'cong-viec/chi-tiet',     component: NewsDetailComponent},
-    { path: 'cong-viec-da-luu',     component: NewsSaveComponent},
-    { path: 'cong-ty',        component: CompanyComponent},
-    { path: 'cong-ty/chi-tiet',        component: CompanyDetailComponent},
-    { path: 'dao-tao',        component: EducationComponent},
-    { path: 'tin-nhan',        component: MessageComponent},
+    { path: 'thong-tin-sinh-vien', component: StudentInfoComponent,
+    canActivate: [AuthGuard]},
+    { path: 'cong-viec',          component: TinTdComponent,canActivate: [AuthGuard]},
+    { path: 'cong-viec/chi-tiet',     component: NewsDetailComponent,canActivate: [AuthGuard]},
+    { path: 'cong-viec-da-luu',     component: NewsSaveComponent,canActivate: [AuthGuard]},
+    { path: 'cong-ty',        component: CompanyComponent,canActivate: [AuthGuard]},
+    { path: 'cong-ty/chi-tiet',        component: CompanyDetailComponent,canActivate: [AuthGuard]},
+    { path: 'dao-tao',        component: EducationComponent,canActivate: [AuthGuard]},
+    { path: 'tin-nhan',        component: MessageComponent,canActivate: [AuthGuard]},
 
-    { path: 'dashboard',      component: DashboardComponent },
-    { path: 'user',           component: UserComponent },
-    { path: 'table',          component: TableComponent },
-    { path: 'typography',     component: TypographyComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent }
+    { path: 'dashboard',      component: DashboardComponent,canActivate: [AuthGuard] },
+    { path: 'user',           component: UserComponent,canActivate: [AuthGuard] },
+    { path: 'table',          component: TableComponent,canActivate: [AuthGuard] },
+    { path: 'typography',     component: TypographyComponent,canActivate: [AuthGuard] },
+    { path: 'icons',          component: IconsComponent,canActivate: [AuthGuard] },
+    { path: 'maps',           component: MapsComponent,canActivate: [AuthGuard] },
+    { path: 'notifications',  component: NotificationsComponent,canActivate: [AuthGuard] },
+    // { path: 'upgrade',        component: UpgradeComponent,canActivate: [AuthGuard] }
 ];

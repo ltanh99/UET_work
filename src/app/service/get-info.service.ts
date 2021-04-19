@@ -9,6 +9,7 @@ import { news }       from '../ts/news';
 export class GetInfoService {
   private apiUrl: string = "http://localhost:8080/search";
   private apiNews: string = "http://localhost:8080/news";
+  private apiEducation: string = "http://202.92.4.184:8585/RecruitmentAPI/";
   constructor(private http: HttpClient) {
   }
 
@@ -25,5 +26,13 @@ export class GetInfoService {
     'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, HEAD, OPTIONS'};
     const body = [{"companyid": 1},{"companyid": 2}];
     return this.http.post(this.apiNews, body, {'headers':headers});
+   }
+
+   getEducation(page,size,searchValue?): Observable<any> {
+    return this.http.get(this.apiEducation +'api/v1/educates'+'?page='+page+'&limit='+size+ '&searchValue='+searchValue); 
+   }
+
+   getCompanyById(id): Observable<any> {
+     return this.http.get('http://202.92.4.184:8585/RecruitmentAPI/api/v1/companies/'+id);
    }
 }

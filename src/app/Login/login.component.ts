@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, NgControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { DataServiceService } from 'app/service/data-service.service';
 import { Student } from '../pages/student-info/student';
 import { LoginService } from '../service/login.service';
 @Component({
@@ -12,7 +13,9 @@ import { LoginService } from '../service/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private studentService: LoginService, public router: Router) { }
+  constructor(private studentService: LoginService, 
+    public router: Router,
+    public dataService: DataServiceService) { }
 
 
    public student = new Student();
@@ -30,20 +33,34 @@ export class LoginComponent implements OnInit {
     this.studentService.studentLogin(this.student).subscribe(res => {
       console.log(this.student.username);
       console.log(res);
-      token1 = res.token;
-      localStorage.setItem('token', token1);
-      localStorage.setItem('userName', student.username);
-      localStorage.setItem('password', student.password);
-      const helper = new JwtHelperService();
+      if (res.username) {
+        localStorage.setItem('session', '');
+        localStorage.setItem('common-info', '');
+        let now = new Date();
+        localStorage.setItem('session', this.addMinutes(now, 30).getTime().toString());
+        localStorage.setItem('common-info', JSON.stringify(res));
+        this.router.navigate(['cong-viec']);
+        this.dataService.setMessage(res);
+      }
+    //   token1 = res.token;
+    //   localStorage.setItem('token', token1);
+    //   localStorage.setItem('userName', student.username);
+    //   localStorage.setItem('password', student.password);
+    //   const helper = new JwtHelperService();
 
-      const decoded= helper.decodeToken(token1);
+    //   const decoded= helper.decodeToken(token1);
 
-    console.log(decoded);
-    this.userName = decoded.sub;
-    console.log(localStorage.getItem('token'));
-    this.router.navigate(['cong-viec']);
+    // console.log(decoded);
+    // this.userName = decoded.sub;
+    // console.log(localStorage.getItem('token'));
+    // this.router.navigate(['cong-viec']);
     })
   }
+
+  addMinutes(date, minutes) {
+    return new Date(date.getTime() + minutes*60000);
+  }
+
   setLocalStorage(){
     localStorage.setItem('token', '');
     localStorage.setItem('userName', '');

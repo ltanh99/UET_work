@@ -7,12 +7,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl: string = "http://localhost:8080/authenticate";
+  private apiUrl: string = "http://202.92.4.184:8585/RecruitmentAPI/api/v1/authentication/login";
   constructor(private http: HttpClient) { }
 
   studentLogin(student: Student): Observable<any>{
-    const headers = {'contest-type': 'application/json'};
-    const body = student;
-    return this.http.post(this.apiUrl, body,{'headers':headers})
+    // const headers = {'contest-type': 'application/json'};
+    // const body = student;
+    // return this.http.post(this.apiUrl, body,{'headers':headers})
+    return this.http.get(this.apiUrl+"?username="+student.username+"&password="+student.password);
   }
 }

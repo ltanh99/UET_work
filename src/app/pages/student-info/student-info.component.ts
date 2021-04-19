@@ -6,6 +6,7 @@ import { studentInfo } from 'app/ts/student-info';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { DataServiceService } from 'app/service/data-service.service';
 
 @Component({
   selector: 'app-student-info',
@@ -18,12 +19,14 @@ export class StudentInfoComponent implements OnInit {
   form: any;
   normalInfomationForm: any;
   educationForm: any;
+  userInfo: any;
   avatar: any;
   isEdit = false;
   constructor(
     private studentService: LoginService,
     private getInfoService: GetInfoService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private dataService: DataServiceService
   ) { }
 
   ngOnInit(): void {
@@ -59,6 +62,38 @@ export class StudentInfoComponent implements OnInit {
       code: localStorage.getItem('userName'),
       name: ''
     } ;
+
+     if (localStorage.getItem("common-info")) {
+      this.userInfo = JSON.parse(localStorage.getItem("common-info"));
+      this.form.setValue({
+        studentName: this.userInfo.fullName?this.userInfo.fullName: '',
+        studentCode: '17020572',
+        gender: this.userInfo.candidate.gender?this.userInfo.candidate.gender:'',
+        birthday: this.userInfo.candidate.birthDay?this.userInfo.candidate.birthDay:'',
+        email: this.userInfo.email?this.userInfo.email:'',
+        address: this.userInfo.address?this.userInfo.address:''
+      });
+
+      this.normalInfomationForm.setValue({
+        level: this.userInfo.candidate.level?this.userInfo.candidate.level: '',
+        typeOfEducate: this.userInfo.candidate.formsOfTraining?this.userInfo.candidate.formsOfTraining: '',
+        education: this.userInfo.candidate.trainingProgram?this.userInfo.candidate.trainingProgram: '',
+        field: this.userInfo.candidate.specialist.name?this.userInfo.candidate.specialist.name: '',
+        course: this.userInfo.candidate.course?this.userInfo.candidate.course: '',
+        class: this.userInfo.candidate.classManage?this.userInfo.candidate.classManage: ''
+      });
+
+      this.educationForm.setValue({
+        gpa: this.userInfo.candidate.gpa?this.userInfo.candidate.gpa: '',
+        preferTechnology: this.userInfo.candidate.forte?this.userInfo.candidate.forte: '',
+        archivement: this.userInfo.candidate.personalAchievements?this.userInfo.candidate.personalAchievements: '',
+        experience: this.userInfo.candidate.personalExperience?this.userInfo.candidate.personalExperience: '',
+      });
+     }
+    // this.dataService.getMessage().subscribe(mes => {
+    //   console.log(mes);
+    //   this.normalInfomationForm["level"] = mes.candidate.level;
+    // })
     let token: string;
     token = localStorage.getItem('token');
     this.getInfoService.getInfo(studentInfo).subscribe(res => {
