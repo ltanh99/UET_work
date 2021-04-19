@@ -15,8 +15,8 @@ export class NewsDetailComponent implements OnInit {
   }
   openDialog(){
     let dialogRef = this.dialog.open(ApplyComponent, {
-      width: '600px',
-      height: '350px'
+      width: '800px',
+      height: '500px'
     });
     dialogRef.afterClosed().subscribe(result => {
     });
