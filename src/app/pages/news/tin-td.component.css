@@ -5,15 +5,20 @@
     transform: translate(0px, 0px);
 }
 .card-text {
-    height: 40px;
-    overflow: hidden;
-    text-overflow: ellipsis; 
 }
-
+.overflow-hide {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .red {
     color: red;
 }
 .display-none {
     display: none;
+}
+.end {
+    position: absolute;
+    bottom: 0;
 }

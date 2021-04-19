@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { news } from 'app/ts/news';
 import { GetInfoService} from '../../service/get-info.service';
 import {enableProdMode} from '@angular/core';
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -16,8 +17,8 @@ export class TinTdComponent implements OnInit {
   tintd= [
     {
       newsid: 0,
-      newName: "tin tuyển dụng 1",
-      companyid: 1,
+      newName: "CHUYÊN VIÊN TƯ VẤN PHẦN MỀM/ THIẾT KẾ WEBSITE - UPTO 15 TRIỆU",
+      companyName: "Công ty cổ phần Công nghệ Sapo",
       position: "BA",
       salary: 10000000,
       place: "Ha noi",
@@ -130,7 +131,7 @@ export class TinTdComponent implements OnInit {
 }
   toggle = true;
   toggleSearch = false;
-enableDisableRule() {
+  toggleHeart() {
     this.toggle = !this.toggle;
 }
   clickSearch() {
