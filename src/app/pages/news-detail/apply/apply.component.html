@@ -3,49 +3,55 @@
     <hr>
 </div>
 <div class = "d-flex">
-    <div class = "col-md-6"><h5><strong>{{fullname}}</strong></h5></div>
+    <div class = "col-md-6"><h5><strong>{{user.fullName}}</strong></h5></div>
     <div class = 'col-md-2'></div>
-    <div class = "col-md-2 d-flex justify-content-end"><div><i class="far fa-user"></i> {{gender}}</div></div>
-    <div class = "col-md-2 d-flex justify-content-end"><div><i class="far fa-calendar-alt"></i> {{birthday}}</div></div>
+    <div class = "col-md-2 d-flex justify-content-end"><div><i class="far fa-user"></i> {{user.candidate.gender}}</div></div>
+    <div class = "col-md-2 d-flex justify-content-end"><div><i class="far fa-calendar-alt"></i> {{user.candidate.birthday}}</div></div>
 </div>
 <div class="col-md-12">
-    <form autocomplete="off" [formGroup]="" >
+    <form autocomplete="off" [formGroup]="form" >
         <div class="form-group">
             <div class="form-group row">
                 <span class="col-sm-4 col-form-label">Giới thiệu: </span>
                 <div class="col-sm-8">
-                    <textarea type="text" class="w-100 long-input" formControlName="archivement" value="17020572"></textarea>
+                    <textarea type="text" class="w-100 long-input" formControlName="description"></textarea>
                 </div>
             </div>
             <div class="form-group row">
-                <span class="col-sm-4 col-form-label">GPA: </span>
+                <span class="col-sm-4 col-form-label">Trợ cấp mong đợi: </span>
                 <div class="col-sm-8">
-                    <input  class="w-100" formControlName="gpa" value="le tuan anh"/>
+                    <input  class="w-100" formControlName="salaryExpect"/>
                 </div>
             </div>
             <div class="form-group row">
-                <span class="col-sm-4 col-form-label">Thành tích cá nhân: </span>
+                <span class="col-sm-4 col-form-label">Sở thích: </span>
                 <div class="col-sm-8">
-                    <textarea  class="w-100 medium-input" formControlName="preferTechnology" value="17020572"></textarea>
+                    <textarea  class="w-100 medium-input" formControlName="preferTechnology"></textarea>
                 </div>
             </div>
             <div class="form-group row">
-                <span class="col-sm-4 col-form-label">Kỹ năng: </span>
+                <span class="col-sm-4 col-form-label">Công việc mong đợi: </span>
                 <div class="col-sm-8">
-                    <textarea type="text" class="w-100 long-input" formControlName="archivement" value="17020572"></textarea>
+                    <textarea type="text" class="w-100 long-input" formControlName="jobExpect"></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <span class="col-sm-4 col-form-label">Kinh nghiệm: </span>
                 <div class="col-sm-8">
-                    <textarea  class="w-100 long-input" formControlName="experience" value="17020572"></textarea>
+                    <textarea  class="w-100 long-input" formControlName="experience"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <span class="col-sm-4 col-form-label">Thắc mắc về công việc: </span>
+                <div class="col-sm-8">
+                    <textarea  class="w-100 long-input" formControlName="question"></textarea>
                 </div>
             </div>
         </div>
     </form>
 </div>
 <mat-dialog-actions align ="end">
-    <button mat-button class="btn btn-outline">Nộp</button>
+    <button mat-button class="btn btn-outline" (click)="apply()">Nộp</button>
     <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-outline">Hủy</button>
   </mat-dialog-actions>
 

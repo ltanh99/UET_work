@@ -33,6 +33,7 @@ import { MessageComponent } from './pages/message/message.component';
 import { IntroductionComponent } from './pages/company/introduction/introduction.component';
 import { NewsOfCompanyComponent } from "./pages/company/news-of-company/news-of-company.component";
 import { ApplyComponent } from './pages/news-detail/apply/apply.component';
+import { NotifierModule } from "angular-notifier";
 // import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({
@@ -67,6 +68,7 @@ import { ApplyComponent } from './pages/news-detail/apply/apply.component';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    NotifierModule,
     MatDialogModule
   ],
   entryComponents: [

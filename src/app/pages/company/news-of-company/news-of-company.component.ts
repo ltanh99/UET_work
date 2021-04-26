@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { GetInfoService } from 'app/service/get-info.service';
 
 @Component({
   selector: 'app-news-of-company',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsOfCompanyComponent implements OnInit {
 
-  constructor() { }
+  @Input() id: any;
+  listJob: Array<any>;
+  constructor(
+    private getInfo: GetInfoService,
+    private router: Router
+  ) { }
 
   tintd= [
     {
@@ -23,6 +30,14 @@ export class NewsOfCompanyComponent implements OnInit {
   },
   ]
   ngOnInit(): void {
+    this.getInfo.getJobByCompanyId(this.id).subscribe(res => {
+      console.log(res);
+      this.listJob = res.rows;
+    })
   }
 
+  sendData(item) {
+    // this.data.setMessage(item);
+    this.router.navigate(['cong-viec/chi-tiet'],{queryParams: {id: item.id}})
+  }
 }

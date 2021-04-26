@@ -62,9 +62,9 @@
               <div class = "col-md-9 p-0 position-relative">
                 <div class = "col-md-12 p-0 d-flex justify-content-between">
                   <div class = " col-md-11 p-0">
-                      <h6 class = "card-title overflow-hide" title="{{item.newName}}">{{item.newName}}</h6> 
+                      <h6 class = "card-title overflow-hide" title="{{item.newName}}" style="font-size: 16px;">{{item.name}}</h6> 
                       
-                    <h6 class = "card-title overflow-hide" title="{{item.companyName}}">{{item.companyName}}</h6>
+                    <h6 class = "card-title overflow-hide" title="{{item.companyName}}" style="font-size: 11px;">{{item.company.description}}</h6>
                     <!-- <div class = 'card-text overflow-hide' title="{{item.description}}">{{item.description}}
                     </div> -->
                       
@@ -75,13 +75,13 @@
                   </div>
                 </div>
                 <div class = "d-flex justify-content-between col-md-12 p-0">
-                  <span><i class="fas fa-dollar-sign"></i> 10 triệu</span>
-                  <span><i class="fas fa-history"></i> parttime</span>
-                  <span><i class="fas fa-users"></i> 10 người</span>
+                  <span><i class="fas fa-dollar-sign"></i> {{item.income}}</span>
+                  <span><i class="fas fa-history"></i> {{item.formOfWork}}</span>
+                  <span><i class="fas fa-users"></i> {{item.quantity}}</span>
                 </div>
                 <div class = "d-flex justify-content-between col-md-12 p-0 end">
-                  <span><i class="far fa-clock"></i> Cập nhật 27/03/2021</span>
-                  <a href="#/news/news-detail">Xem chi tiết</a>
+                  <span><i class="far fa-clock"></i> Cập nhật 19/04/2021</span>
+                  <a (click)="sendData(item)">Xem chi tiết</a>
                 </div>
               </div>
               
@@ -98,9 +98,9 @@
                   <span class="sr-only">Previous</span>
                 </a>
               </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item" *ngFor="let item of pageArr"><a class="page-link" href="#">{{item}}</a></li>
+              <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li> -->
               <li class="page-item">
                 <a class="page-link" href="#" aria-label="Next">
                   <span aria-hidden="true">&raquo;</span>

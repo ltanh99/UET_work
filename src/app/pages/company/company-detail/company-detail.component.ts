@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { GetInfoService } from 'app/service/get-info.service';
 
 @Component({
   selector: 'app-company-detail',
@@ -8,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 export class CompanyDetailComponent implements OnInit {
 
   isIntroTab = true;
-  constructor() { }
+  companyId;
+  data;
+  constructor(
+    private route: ActivatedRoute,
+    public getInfo: GetInfoService
+  ) { }
 
   ngOnInit(): void {
+    this.companyId = this.route.snapshot.queryParamMap.get("id");
+    this.getInfo.getCompanyById(this.companyId).subscribe(res=> {
+      this.data = res;
+    })
   }
 
   changeTab(e) {

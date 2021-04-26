@@ -26,15 +26,15 @@
                 </div>
                 <div class = " col-md-8 p-0">
                   <div class = "d-flex justify-content-between">
-                    <h5 class = "card-title">{{company.name}}</h5> 
+                    <h3 class = "card-title" >{{company.fullName}}</h3> 
                   </div>
                 </div>
               </div>
               
               <div class = "col-md-12 p-0">
-                <p class = 'card-text'>{{company.description}}</p>
+                <p class = 'card-text'>{{company.company.description}}</p>
                   <div class = "d-flex justify-content-end">
-                    <a href="#/news/news-detail">Xem chi tiết</a>
+                    <a (click)="showDetail(company)">Xem chi tiết</a>
                   </div>
               </div>
             </div>   

@@ -46,4 +46,11 @@ export class EducationComponent implements OnInit {
     this.toggleSearch = !this.toggleSearch;
   }
 
+  joinEducation(item) {
+    let user = JSON.parse(localStorage.getItem("common-info"));
+    this.getInfoService.joinEducation(user.id,item.id).subscribe(res => {
+      console.log(res);
+    })
+  }
+
 }

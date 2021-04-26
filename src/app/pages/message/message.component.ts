@@ -10,7 +10,7 @@ declare var StringeeChat: any;
 })
 export class MessageComponent implements OnInit {
 
-  ACCESS_TOKEN = "eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTS1BMVjlhbjBVeXdRTk1RamhUMFdFU09yOE9aQkdEVzBXLTE2MTgzMjc1NzQiLCJpc3MiOiJTS1BMVjlhbjBVeXdRTk1RamhUMFdFU09yOE9aQkdEVzBXIiwiZXhwIjoxNjE4MzMxMTc0LCJ1c2VySWQiOiIxIiwiaWNjX2FwaSI6dHJ1ZX0.CBf0CVODmr7HXarl2UDwIFsrMCHJN9ACo1dtJC66lC8";
+  ACCESS_TOKEN = "eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTS1BMVjlhbjBVeXdRTk1RamhUMFdFU09yOE9aQkdEVzBXLTE2MTg5Nzk4NDUiLCJpc3MiOiJTS1BMVjlhbjBVeXdRTk1RamhUMFdFU09yOE9aQkdEVzBXIiwiZXhwIjoxNjIxNTcxODQ1LCJ1c2VySWQiOiIxIn0.7vY5sLCh78nF7-hDVQMJWXWjz3Gh6iJvAvNegXJn7D4";
   stringeeClient = new StringeeClient();
   stringeeChat;
   userId;
@@ -19,14 +19,22 @@ export class MessageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.stringeeClient.connect(this.ACCESS_TOKEN)
+    this.stringeeClient.connect(this.ACCESS_TOKEN);
+    let ref = this;
+    console.log(typeof(ref))
+    if(this.stringeeClient) {
+      localStorage.setItem("stringeeClient", JSON.stringify(this.stringeeClient))
+    }
 
     this.stringeeChat= new StringeeChat(this.stringeeClient);
+    if(this.stringeeChat) {
+      localStorage.setItem("stringeeChat", JSON.stringify(this.stringeeChat))
+    }
     this.userId = this.getCurrentUserIdFromAccessToken(this.ACCESS_TOKEN);
     this.renderLastConversationsAndMessages();
-    this.stringeeClient.on('connect', function () {
+    this.stringeeClient.on('connect', function (ref) {
+      let mes = new MessageComponent;
       console.log('++++++++++++++ connected to StringeeServer');
-      
     });
 
     this.stringeeClient.on('authen', function (res) {
@@ -36,6 +44,11 @@ export class MessageComponent implements OnInit {
     this.stringeeClient.on('disconnect', function () {
       console.log('++++++++++++++ disconnected');
     });
+    
+  }
+
+  logStringee(){
+    
   }
 
   // Hàm lấy userId hiện tại của người dùng đăng nhập
@@ -50,7 +63,6 @@ export class MessageComponent implements OnInit {
     let jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
-
     return JSON.parse(jsonPayload);
 }
 
@@ -60,13 +72,10 @@ export class MessageComponent implements OnInit {
     let isAscending = false;
     let accessToken = this.ACCESS_TOKEN;
     let userId = this.getCurrentUserIdFromAccessToken(accessToken);
-    if (this.stringeeChat) {
-      this.stringeeChat.getLastConversations(25,false,(status, code, message, convs)=> {
+      this.stringeeChat.getLastConversations(25,isAscending,(status, code, message, convs)=> {
         console.log(1)
-      
+        localStorage.setItem("message",message);
       })
-      
-    }
     
   }
 

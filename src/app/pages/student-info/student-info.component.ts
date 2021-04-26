@@ -67,7 +67,7 @@ export class StudentInfoComponent implements OnInit {
       this.userInfo = JSON.parse(localStorage.getItem("common-info"));
       this.form.setValue({
         studentName: this.userInfo.fullName?this.userInfo.fullName: '',
-        studentCode: '17020572',
+        studentCode: this.userInfo.candidate.cardNumber?this.userInfo.candidate.cardNumber: '',
         gender: this.userInfo.candidate.gender?this.userInfo.candidate.gender:'',
         birthday: this.userInfo.candidate.birthDay?this.userInfo.candidate.birthDay:'',
         email: this.userInfo.email?this.userInfo.email:'',
@@ -106,13 +106,40 @@ export class StudentInfoComponent implements OnInit {
     this.isEdit = !this.isEdit;
   }
 
+  submit() {
+
+    let bodyuser = this.userInfo;
+    bodyuser.address = this.form.value["address"];
+    bodyuser.email = this.form.value["email"];
+    bodyuser.candidate.forte = this.educationForm.value["preferTechnology"];
+    bodyuser.candidate.personalAchievements = this.educationForm.value["archivement"];
+    bodyuser.candidate.personalExperience = this.educationForm.value["experience"];
+    let bodyParam = {
+      "address": this.form.value["address"],
+      "email": this.form.value["email"],
+      candidate: {
+        "forte": this.educationForm.value["preferTechnology"],
+        "personalAchievements": this.educationForm.value["archivement"],
+        "personalExperience": this.educationForm.value["experience"],
+      }
+    }
+    this.getInfoService.updateUser(bodyuser, this.userInfo.id).subscribe(res => {
+      console.log(res);
+      localStorage.setItem("common-info", bodyuser);
+      // this.getInfoService.getUserById(this.userInfo.id).subscribe(res => {
+      //   this.userInfo = res;
+      // })
+    });
+  }
+
   openDialog() {
     // const dialogConfig = new MatDialogConfig();
     // this.dialog.open(ChangePasswordComponent, dialogConfig);
     // console.log(e);
     let dialogRef = this.dialog.open(ChangePasswordComponent, {
       width: '600px',
-      height: '350px'
+      height: '350px',
+      data: {id: this.userInfo.id}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
