@@ -51,7 +51,8 @@ import { NotifierModule } from "angular-notifier";
     CompanyDetailComponent,
     IntroductionComponent,
     NewsOfCompanyComponent,
-    ApplyComponent
+    ApplyComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
