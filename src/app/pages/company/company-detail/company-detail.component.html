@@ -1,11 +1,10 @@
 <div>
-    <div>
-        <img  class = "cover" src = "https://static.topcv.vn/top_lists/ee4aeb7b3196735a6f9c011413232e88-5c3c141e9d3c7.jpg">
-    </div>
-    <div class = "d-flex justify-content-between align-items-center form-control">
+<div class = "cover">
+    <div style = "height: 256px"></div>
+    <div class = "d-flex justify-content-between align-items-center form-control bg-light">
         <div class = "col-md-3 d-flex justify-content-start align-items-center div-ava">
             <img class = "ava"
-                      src = "https://static.topcv.vn/company_logos/cong-ty-co-phan-thoi-trang-yody-6030e6f956223.jpg">
+                src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlFx0pzEoOcvEJv49Qe2cDBGaa8nL2UtCsGQ&usqp=CAU">
         </div>
         <div class = "col-md-7">
             <h2 class = "mb-4 pb-0">{{data?.fullName}}</h2>
@@ -18,19 +17,20 @@
         
         
     </div>
+</div>
     <div class = "pt-3 pb-0 mb-0">
         <ul class = "nav">
-            <li class = "nav-item">
-                <div (click)="changeTab(0)">Giới thiệu</div>
-                <hr *ngIf="isIntroTab">
+            <li class = "nav-item mr-3"  [ngClass]="{cssClick: isIntroTab}">
+                <div (click)="changeTab(0)" style = "font-size: 23px;">Giới thiệu</div>
+                
             </li>
-            <li class = "nav-item">
-                <div (click)="changeTab(1)">Tuyển dụng</div>
-            <hr *ngIf="!isIntroTab">
+            <li class = "nav-item" [ngClass]="{cssClick: !isIntroTab}">
+                <div (click)="changeTab(1)"  style = "font-size: 23px;">Tuyển dụng</div>
         </li>
         </ul>
         <hr class = "mt-0 pt-0">
     </div>
+
     <div class = "d-flex container-fluid pl-0 pr-0 justify-content-between">
         <div class = "col-md-8">
             <app-introduction [data]="data" *ngIf="isIntroTab"></app-introduction>
@@ -39,14 +39,17 @@
         <div class = "col-md-4">
             <div class = "card">
                 <div class = "card-header">
-                    <h3>Đánh giá</h3>
+                    <h3 class = "mb-0">Đánh giá</h3>
+                    <hr>
                 </div>
-                <div class="card-content">
+                <div class="card-body">
                     <div *ngFor="let rate of data?.company?.rates">
-                        <div>{{rate.namePerson}}</div>
+                        <div> <i class="fas fa-star"></i> {{rate.namePerson}}</div>
                         <div>{{rate.content}}</div>
-                        <div>{{rate.createdDate}}</div>
-                    </div>
+                        <div><i class="fas fa-history"></i> 01/04/2021
+                            <!-- {{rate.createdDate}} -->
+                        </div>
+                        <hr>
                 </div>
             </div>
         </div>

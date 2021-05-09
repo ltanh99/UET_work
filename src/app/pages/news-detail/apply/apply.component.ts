@@ -9,7 +9,7 @@ import { GetInfoService } from 'app/service/get-info.service';
   styleUrls: ['./apply.component.css']
 })
 export class ApplyComponent implements OnInit {
-  // work = "Tuyển dụng 123";
+  work = "FPT Software tuyển dụng";
   // fullname = "Nguyễn Ngọc Giỏi";
   // gender = "Nữ";
   // birthday = "27/12/1999";

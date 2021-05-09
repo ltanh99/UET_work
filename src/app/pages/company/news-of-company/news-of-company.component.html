@@ -1,38 +1,39 @@
-<div class = " row d-flex justify-content-between" >
-  <div class = "col-md-12 pt-3 pl-1 pr-1" *ngFor = "let item of listJob" >
-    <div class = "card" >
-      <div class = "card-body d-flex col-md-12">
-        <div class = "d-flex justify-content-start align-items-center col-md-3 pl-0">
-            <img 
-            src = "https://static.topcv.vn/company_logos/cong-ty-co-phan-thoi-trang-yody-6030e6f956223.jpg">
-        </div>
-        <div class = "col-md-9 p-0 position-relative">
-          <div class = "col-md-12 p-0 d-flex justify-content-between">
-            <div class = " col-md-11 p-0">
-                <h6 class = "card-title overflow-hide" title="{{item.name}}">{{item.name}}</h6> 
-                
-              <h6 class = "card-title overflow-hide" title="{{item.company.user.fullName}}">{{item.company.user.fullName}}</h6>
-              <!-- <div class = 'card-text overflow-hide' title="{{item.description}}">{{item.description}}
-              </div> -->
-                
+<div class = "container">
+  <div class = " row d-flex justify-content-between" >
+    <div class = "col-md-12 pt-3 pl-1 pr-1" *ngFor = "let item of tintd" >
+      <div class = "card" >
+        <div class = "card-body d-flex col-md-12">
+          <div class = "d-flex justify-content-start align-items-center col-md-3 pl-0">
+              <img 
+              src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlFx0pzEoOcvEJv49Qe2cDBGaa8nL2UtCsGQ&usqp=CAU">
+          </div>
+          <div class = "col-md-9 p-0 position-relative">
+            <div class = "col-md-12 p-0 d-flex justify-content-between">
+              <div class = " col-md-11 p-0">
+                  <h6 class = "card-title overflow-hide" title="{{item.newName}}" style="font-size: 16px;">{{item.name}}</h6> 
+                  
+                <h6 class = "card-title overflow-hide" title="{{item.companyName}}" style="font-size: 11px;">{{item.company.description}}</h6>
+                <!-- <div class = 'card-text overflow-hide' title="{{item.description}}">{{item.description}}
+                </div> -->
+                  
+              </div>
+              <div  class = "col-md-1 p-0 d-flex justify-content-end">
+                <i class="far fa-heart" style = "font-size: 20px;" *ngIf = "toggle" (click) = "toggleHeart()"></i>
+                <i class="fas fa-heart" style = "font-size: 20px;" *ngIf = "!toggle"  (click) = "toggleHeart()"></i>
+              </div>
             </div>
-            <div  class = "col-md-1 p-0 d-flex justify-content-end">
-              <i class="far fa-heart" style = "font-size: 20px;" *ngIf = "toggle" (click) = "toggleHeart()"></i>
-              <i class="fas fa-heart" style = "font-size: 20px;" *ngIf = "!toggle"  (click) = "toggleHeart()"></i>
+            <div class = "d-flex justify-content-between col-md-12 p-0">
+              <span><i class="fas fa-dollar-sign"></i> {{item.income}}</span>
+              <span><i class="fas fa-history"></i> {{item.formOfWork}}</span>
+              <span><i class="fas fa-users"></i> {{item.quantity}}</span>
+            </div>
+            <div class = "d-flex justify-content-between col-md-12 p-0">
+              <span><i class="far fa-clock"></i> Cập nhật 19/04/2021</span>
+              <a (click)="sendData(item)" class = "text-primary">Xem chi tiết</a>
             </div>
           </div>
-          <div class = "d-flex justify-content-between col-md-12 p-0">
-            <span><i class="fas fa-dollar-sign"></i> {{item.income}}</span>
-            <span><i class="fas fa-history"></i> {{item.formOfWork}}</span>
-            <span><i class="fas fa-users"></i> {{item.quantity}}</span>
-          </div>
-          <div class = "d-flex justify-content-between col-md-12 p-0 end">
-            <span><i class="far fa-clock"></i> Cập nhật {{item.createdDate}}</span>
-            <a (click)="sendData(item)">Xem chi tiết</a>
-          </div>
-        </div>
-        
-    </div>   
-  </div> 
-    
-  </div>     
+          
+      </div>   
+    </div> 
+  </div>          
+</div>

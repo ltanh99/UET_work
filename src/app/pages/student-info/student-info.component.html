@@ -2,9 +2,9 @@
     <div class="card col-md-12 pb-3">
         <div class="text-center d-flex justify-content-center">
             <!-- <img src="..." class="rounded" alt="..."> -->
-            <div id="profileImage">{{avatar}}</div>
+            <div id="profileImage">NG</div>
         </div>
-        <div class="text-center" style="font-size: 36px">Le Tuan Anh</div>
+        <div class="text-center" style="font-size: 36px">Nguyễn Ngọc Giỏi</div>
         <div class="d-flex justify-content-center">
             <button type="button" class="btn btn-outline-primary" (click)="openDialog()">Đổi mật khẩu</button>
             <button type="button" class="btn btn-outline-primary ml-2" (click)="editInfo()">Chỉnh sửa thông tin</button>
@@ -21,37 +21,37 @@
                         <div class="form-group row">
                             <span class="col-sm-4 col-form-label">Họ và tên: </span>
                             <div class="col-sm-8">
-                                <input  class="w-100" formControlName="studentName" value="le tuan anh" readonly/>
+                                <input  class="w-100" formControlName="studentName" value="Nguyễn Ngọc Giỏi" readonly/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <span class="col-sm-4 col-form-label">Mã sinh viên: </span>
                             <div class="col-sm-8">
-                                <input  class="w-100" formControlName="studentCode" value="17020572" readonly/>
+                                <input  class="w-100" formControlName="studentCode" value="17020708" readonly/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <span class="col-sm-4 col-form-label">Giới tính: </span>
                             <div class="col-sm-8">
-                                <input  class="w-100" formControlName="gender" value="17020572" readonly/>
+                                <input  class="w-100" formControlName="gender" value="Nữ" readonly/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <span class="col-sm-4 col-form-label">Ngày sinh: </span>
                             <div class="col-sm-8">
-                                <input  class="w-100" formControlName="birthday" value="17020572" readonly/>
+                                <input  class="w-100" formControlName="birthday" value="27/12/1999" readonly/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <span class="col-sm-4 col-form-label">Email: </span>
                             <div class="col-sm-8">
-                                <input  class="w-100" formControlName="email" value="17020572" [readonly]="!isEdit"/>
+                                <input  class="w-100" formControlName="email" value="17020708@vnu.edu.vn" [readonly]="!isEdit"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <span class="col-sm-4 col-form-label">Địa chỉ: </span>
                             <div class="col-sm-8">
-                                <input  class="w-100" formControlName="address" value="17020572" [readonly]="!isEdit"/>
+                                <input  class="w-100" formControlName="address" value="Ngõ 81 Pháo đài Láng, HN" [readonly]="!isEdit"/>
                             </div>
                         </div>
                     </div>
@@ -72,37 +72,37 @@
                         <div class="form-group row">
                             <span class="col-sm-4 col-form-label">Bậc : </span>
                             <div class="col-sm-8">
-                                <input  class="w-100" formControlName="level" value="le tuan anh" readonly/>
+                                <input  class="w-100" formControlName="level" value="Đại học" readonly/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <span class="col-sm-4 col-form-label">Hình thức đào tạo: </span>
                             <div class="col-sm-8">
-                                <input  class="w-100" formControlName="typeOfEducate" value="17020572" readonly/>
+                                <input  class="w-100" formControlName="typeOfEducate" value="Chính quy" readonly/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <span class="col-sm-4 col-form-label">Chương trình ĐT: </span>
                             <div class="col-sm-8">
-                                <input  class="w-100" formControlName="education" value="17020572" readonly/>
+                                <input  class="w-100" formControlName="education" value="Chuẩn" readonly/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <span class="col-sm-4 col-form-label">Ngành: </span>
                             <div class="col-sm-8">
-                                <input  class="w-100" formControlName="field" value="17020572" readonly/>
+                                <input  class="w-100" formControlName="field" value="Công nghệ thông tin" readonly/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <span class="col-sm-4 col-form-label">Khóa học: </span>
                             <div class="col-sm-8">
-                                <input  class="w-100" formControlName="course" value="17020572" readonly/>
+                                <input  class="w-100" formControlName="course" value="2017-2021" readonly/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <span class="col-sm-4 col-form-label">Lớp quản lý: </span>
                             <div class="col-sm-8">
-                                <input  class="w-100" formControlName="class" value="17020572" readonly/>
+                                <input  class="w-100" formControlName="class" value="K62CD" readonly/>
                             </div>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <span class="col-sm-4 col-form-label">Sở trường: </span>
+                            <span class="col-sm-4 col-form-label">Sở thích: </span>
                             <div class="col-sm-8">
                                 <textarea  class="w-100 medium-input" formControlName="preferTechnology" value="17020572" [readonly]="!isEdit"></textarea>
                             </div>
@@ -152,7 +152,7 @@
 
     <div class="card col-md-12" *ngIf="isEdit">
         <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-success" (click)="submit()">Lưu</button>
+            <button type="button" class="btn btn-primary" (click)="submit()">Lưu</button>
         </div>
     </div>
 

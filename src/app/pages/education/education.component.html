@@ -1,12 +1,12 @@
 <div class = "card col-md-12 pb-3">
     <div class = "">
         <div *ngIf="!toggleSearch" class = "col-md-12 d-flex justify-content-between align-items-center">
-          <input class = "form-control col-md-10" placeholder="Nhập tên công việc, vị trí ứng tuyển...">
-          <button class = "btn col-md-2"><i class="nc-icon nc-zoom-split mr-1"></i> Tìm kiếm</button>
+          <input class = "form-control col-md-10" placeholder="Nhập tên seminar, tên doanh nghiệp">
+          <button class = "btn col-md-2 btn-primary"><i class="nc-icon nc-zoom-split mr-1"></i> Tìm kiếm</button>
         </div>
         <div class = "col-md-12 d-flex justify-content-center align-items-center">
-            <button *ngIf="!toggleSearch" class = "btn col-md-2" style="height: 36px;" (click)="clickSearch()"><i class="nc-icon nc-minimal-down mr-1"></i><label> Tìm kiếm nâng cao</label></button>
-            <button *ngIf="toggleSearch" class = "btn col-md-2" style="height: 36px;" (click)="clickSearch()"><i class="nc-icon nc-minimal-up mr-1"></i><label> Thu gọn</label></button>
+            <button *ngIf="!toggleSearch" class = "btn btn-primary d-flex justify-content-center" style="height: 36px;" (click)="clickSearch()"><i class="nc-icon nc-minimal-down mr-1"></i> Tìm kiếm nâng cao</button>
+            <button *ngIf="toggleSearch" class = "btn col-md-2 btn-primary" style="height: 36px;" (click)="clickSearch()"><i class="nc-icon nc-minimal-up mr-1"></i><label> Thu gọn</label></button>
         </div>
         <div *ngIf="toggleSearch">
           <div class = "col-md-12 d-flex justify-content-between align-items-center p-0">
@@ -56,7 +56,8 @@
           <div class = "card-body d-flex justify-content-between" >
               <div class="col-md-2">
                   <!-- <img src="..." class="rounded" alt="..."> -->
-                  <div id="profileImage">LA</div>
+                  <div class = "mt-4"><img 
+                    src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlFx0pzEoOcvEJv49Qe2cDBGaa8nL2UtCsGQ&usqp=CAU"></div>
               </div>
               <div class="col-md-10" style="line-height: 28px;font-size: 16px;">
                   <div class="title">{{educationItem.name}}</div>
@@ -67,14 +68,16 @@
                       <span>Diễn giả: {{educationItem.speaker}}</span>
                   </div>
                   <div class="time">
-                      <span>Thời hạn đăng ký: {{educationItem.startDate}}</span>
+                      <span>Thời gian bắt đầu: 09h15 15/05/2021
+                        <!-- {{educationItem.startDate}} -->
+                      </span>
                   </div>
                   <!-- <div class="seminar-description">
                       <span>Mô tả: Chia sẻ về tầm quan trọng của UI/UX trong công nghệ hiện nay</span>
                   </div> -->
   
                   <div>
-                      <div>Thông tin liên hệ: {{educationItem.company.year}}</div>
+                      <div>Thông tin liên hệ: Ms. Huệ: 0915772886</div>
                   </div>
                   <div class="d-flex justify-content-end">
                       <button mat-button type="button" class="btn btn-outline-primary" (click)="viewDetail(item)">Xem chi tiết</button>

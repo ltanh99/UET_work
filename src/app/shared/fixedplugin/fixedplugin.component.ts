@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class FixedPluginComponent implements OnInit{
 
   public sidebarColor: string = "white";
-  public sidebarActiveColor: string = "danger";
+  public sidebarActiveColor: string = "primary";
 
   public state: boolean = true;
 
@@ -28,5 +28,7 @@ export class FixedPluginComponent implements OnInit{
         sidebar.setAttribute('data-active-color',color);
     }
   }
-  ngOnInit(){}
+  ngOnInit(){
+    this.changeSidebarActiveColor("primary");
+  }
 }

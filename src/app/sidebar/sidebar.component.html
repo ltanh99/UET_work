@@ -3,14 +3,14 @@
   <div class="logo">
     <a href="http://www.creative-tim.com" class="simple-text logo-mini">
       <div>
-        <i class="fas fa-code" style = "font-size: 36px; color: lightcoral;"></i>
+        <i class="fas fa-code text-danger" style = "font-size: 36px;"></i>
       </div>
     </a>
     <a href="#" class="simple-text logo-normal">
       UET JOB
     </a>
   </div>
-    <ul class="nav">
+    <ul class="nav sidebar-primary">
         <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">
             <a [routerLink]="[menuItem.path]">
                 <i class=" {{menuItem.icon}}"></i>

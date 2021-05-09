@@ -1,8 +1,8 @@
 <div class = "form-group">
     <div class = "form-control col-md-12">
         <div class = "col-md-12 d-flex justify-content-between align-items-center">
-          <input class = "form-control col-md-10" placeholder="Nhập tên công ty">
-          <button class = "btn col-md-2"><i class="nc-icon nc-zoom-split"></i> Search</button>
+          <input class = "form-control col-md-10" placeholder="Nhập tên doanh nghiệp">
+          <button class = "btn col-md-2 btn-primary"><i class="nc-icon nc-zoom-split"></i> Search</button>
         </div>
          
     </div>
@@ -12,21 +12,20 @@
 <div>
     <div class = "container dflex">
       <div class = " row d-flex">
-        <div class = "col-md-4 ml-0 mb-0 p-3"  *ngFor = "let company of companies">
+        <div class = "col-md-4 ml-0 mb-0 p-3"  *ngFor = "let company of companies, let i = index">
           <div class = "card mb-0" >
               <div class = "card-header">
-                <img class = "img-cover"
-                src = "https://static.topcv.vn/top_lists/ee4aeb7b3196735a6f9c011413232e88-5c3c141e9d3c7.jpg">
-              </div>
+                <img class = "img-cover" style = "height: 142px; width: 100%" src = {{cover[i]}}>
+                              </div>
             <div class = "card-body">
               <div class = "d-flex">
                 <div class = "d-flex justify-content-start align-items-top col-md-4 pl-0">
                   <img class = "ava-company"
-                  src = "https://static.topcv.vn/company_logos/cong-ty-co-phan-thoi-trang-yody-6030e6f956223.jpg">
+                  src = {{img[i]}}>
                 </div>
                 <div class = " col-md-8 p-0">
                   <div class = "d-flex justify-content-between">
-                    <h3 class = "card-title" >{{company.fullName}}</h3> 
+                    <h4 class = "card-title mt-0" >{{company.fullName}}</h4> 
                   </div>
                 </div>
               </div>
@@ -34,7 +33,7 @@
               <div class = "col-md-12 p-0">
                 <p class = 'card-text'>{{company.company.description}}</p>
                   <div class = "d-flex justify-content-end">
-                    <a (click)="showDetail(company)">Xem chi tiết</a>
+                    <a (click)="showDetail(company)" class = "text-primary">Xem chi tiết</a>
                   </div>
               </div>
             </div>   

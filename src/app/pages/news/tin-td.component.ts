@@ -148,9 +148,9 @@ export class TinTdComponent implements OnInit {
   //   this.news.getNews().subscribe(res => this.tintd = res);
     
   //}
-  public get half(): number {
-    return Math.ceil(this.tintd.length / 2);
-}
+//   public get half(): number {
+//     return Math.ceil(this.tintd.length / 2);
+// }
   toggle = true;
   toggleSearch = false;
   toggleHeart() {

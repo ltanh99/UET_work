@@ -1,12 +1,10 @@
 .ava-company {
     height:fit-content;
 }
-.img-cover {
-    
-}
+
 
 .card-title {
-    height: 90px;
+    height: 75px;
     overflow: hidden;
     text-overflow: ellipsis; 
 }
