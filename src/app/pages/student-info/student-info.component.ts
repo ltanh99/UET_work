@@ -21,8 +21,8 @@ export class StudentInfoComponent implements OnInit {
   educationForm: any;
   userInfo: any;
   avatar: any;
-  name: any;
   isEdit = false;
+  colorAva = '#512DA8';
   constructor(
     private studentService: LoginService,
     private getInfoService: GetInfoService,
@@ -32,44 +32,52 @@ export class StudentInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      studentName: new FormControl('Nguyễn Ngọc Giỏi', null),
-      studentCode: new FormControl('17020708', null),
-      gender: new FormControl('Nữ', null),
-      birthday: new FormControl('27/12/1999', null),
-      email: new FormControl('17020708@vnu.edu.vn', null),
-      address: new FormControl('144 Xuân Thủy, Cầu Giấy, Hà Nội', null)
+      studentName: new FormControl('', null),
+      studentCode: new FormControl('', null),
+      gender: new FormControl('', null),
+      birthday: new FormControl('', null),
+      email: new FormControl('', null),
+      address: new FormControl('', null)
     });
     this.normalInfomationForm = new FormGroup({
-      level: new FormControl('Đại học', null),
-      typeOfEducate: new FormControl('Chính quy', null),
-      education: new FormControl('Chuẩn', null),
-      field: new FormControl('Công nghệ thông tin', null),
-      course: new FormControl('QH-2017', null),
-      class: new FormControl('K62CD', null)
+      level: new FormControl('', null),
+      typeOfEducate: new FormControl('', null),
+      education: new FormControl('', null),
+      field: new FormControl('', null),
+      course: new FormControl('', null),
+      class: new FormControl('', null)
     });
     this.educationForm = new FormGroup({
-      gpa: new FormControl('3.55', null),
-      preferTechnology: new FormControl('Đọc sách, nghe nhạc', null),
+      gpa: new FormControl('', null),
+      preferTechnology: new FormControl('', null),
       archivement: new FormControl('', null),
       experience: new FormControl('', null),
     });
 
-    this.avatar = 'NG';
-    this.name = 'Nguyễn Ngọc Giỏi';
-    //this.getInfo()
+
+    this.getInfo()
+    this.colorAva = this.getRandomColor();
   }
 
+  getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+
   getInfo(){
-    
     let studentInfo ={
       code: localStorage.getItem('userName'),
       name: ''
     } ;
 
-
-
      if (localStorage.getItem("common-info")) {
       this.userInfo = JSON.parse(localStorage.getItem("common-info"));
+      this.avatar = this.userInfo.fullName.charAt(0);
       this.form.setValue({
         studentName: this.userInfo.fullName?this.userInfo.fullName: '',
         studentCode: this.userInfo.candidate.cardNumber?this.userInfo.candidate.cardNumber: '',
@@ -99,13 +107,12 @@ export class StudentInfoComponent implements OnInit {
     //   console.log(mes);
     //   this.normalInfomationForm["level"] = mes.candidate.level;
     // })
-
-    
     let token: string;
     token = localStorage.getItem('token');
     this.getInfoService.getInfo(studentInfo).subscribe(res => {
       console.log(res);
     })
+
   }
 
   editInfo(){
@@ -132,9 +139,9 @@ export class StudentInfoComponent implements OnInit {
     this.getInfoService.updateUser(bodyuser, this.userInfo.id).subscribe(res => {
       console.log(res);
       localStorage.setItem("common-info", bodyuser);
-      this.getInfoService.getUserById(this.userInfo.id).subscribe(res => {
-        this.userInfo = res;
-      })
+      // this.getInfoService.getUserById(this.userInfo.id).subscribe(res => {
+      //   this.userInfo = res;
+      // })
     });
   }
 
@@ -152,7 +159,7 @@ export class StudentInfoComponent implements OnInit {
     });
   }
 
-  
+
 }
 
 
