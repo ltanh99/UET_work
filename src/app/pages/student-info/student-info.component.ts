@@ -22,6 +22,7 @@ export class StudentInfoComponent implements OnInit {
   userInfo: any;
   avatar: any;
   isEdit = false;
+  colorAva = '#512DA8';
   constructor(
     private studentService: LoginService,
     private getInfoService: GetInfoService,
@@ -53,9 +54,20 @@ export class StudentInfoComponent implements OnInit {
       experience: new FormControl('', null),
     });
 
-    this.avatar = 'LA';
+    
     this.getInfo()
+    this.colorAva = this.getRandomColor();
   }
+
+  getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+  
 
   getInfo(){
     let studentInfo ={
@@ -65,6 +77,7 @@ export class StudentInfoComponent implements OnInit {
 
      if (localStorage.getItem("common-info")) {
       this.userInfo = JSON.parse(localStorage.getItem("common-info"));
+      this.avatar = this.userInfo.fullName.charAt(0);
       this.form.setValue({
         studentName: this.userInfo.fullName?this.userInfo.fullName: '',
         studentCode: this.userInfo.candidate.cardNumber?this.userInfo.candidate.cardNumber: '',

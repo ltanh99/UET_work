@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataServiceService } from 'app/service/data-service.service';
 import { GetInfoService } from 'app/service/get-info.service';
 import { ApplyComponent } from './apply/apply.component';
@@ -16,6 +16,7 @@ export class NewsDetailComponent implements OnInit {
   jobId;
   constructor(private dialog: MatDialog,
     public data: DataServiceService,
+    public router: Router,
     public route: ActivatedRoute,
     public getInfo: GetInfoService) { }
 
@@ -40,5 +41,8 @@ export class NewsDetailComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+  gotoChat() {
+    this.router.navigate(['tin-nhan'],{queryParams: {id: 'job'+this.dataDetail.id,name: this.dataDetail.name}})
   }
 }
