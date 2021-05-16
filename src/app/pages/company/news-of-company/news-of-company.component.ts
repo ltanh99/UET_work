@@ -16,19 +16,6 @@ export class NewsOfCompanyComponent implements OnInit {
     private router: Router
   ) { }
 
-  tintd= [
-    {
-      newsid: 0,
-      newName: "tin tuyển dụng 1",
-      companyid: 1,
-      position: "BA",
-      salary: 10000000,
-      place: "Ha noi",
-      description: "tuấn anh tuấn anh tuấn anh tuấn anh tuấn anh hidden hidden hidden hiddennnnnnnnnnnnnnnnnnnnnn hidden hiddenhidden hiddenhidden hiddenhidden hidden ",
-      expiredate: "2021-04-27",
-      status: 1
-  },
-  ]
   ngOnInit(): void {
     this.getInfo.getJobByCompanyId(this.id).subscribe(res => {
       console.log(res);

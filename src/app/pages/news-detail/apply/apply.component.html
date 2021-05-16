@@ -5,7 +5,7 @@
 <div>
     <div class = "col-md-12"><span><strong>{{user.fullName}}</strong></span></div>
 </div>
-<div class="col-md-12">
+<div class="col-md-12 mt-2">
     <form autocomplete="off" [formGroup]="form" >
         <div class="form-group">
             <div class="form-group">
@@ -24,7 +24,7 @@
         </div>
     </form>
 </div>
-<mat-dialog-actions align ="end">
+<mat-dialog-actions align ="end" class = "p-0">
     <button mat-button class="btn btn-outline-primary" (click)="apply()">Nộp</button>
     <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-outline-primary">Hủy</button>
   </mat-dialog-actions>

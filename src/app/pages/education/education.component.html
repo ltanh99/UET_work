@@ -1,10 +1,10 @@
 <div class = "card col-md-12 pb-3">
     <div class = "">
-        <div *ngIf="!toggleSearch" class = "col-md-12 d-flex justify-content-between align-items-center">
-          <input class = "form-control col-md-10" placeholder="Nhập tên seminar, tên doanh nghiệp">
-          <button class = "btn col-md-2 btn-primary"><i class="nc-icon nc-zoom-split mr-1"></i> Tìm kiếm</button>
-        </div>
-        <div class = "col-md-12 d-flex justify-content-center align-items-center">
+        <form *ngIf="!toggleSearch" class = "col-md-12 d-flex justify-content-between align-items-center"[formGroup]="form">
+          <input class = "form-control col-md-10" placeholder="Nhập tên seminar, tên doanh nghiệp" formControlName = "searchEdu">
+          <button class = "btn col-md-2 btn-primary" (click) = "searchEdu()"><i class="nc-icon nc-zoom-split mr-1"></i> Tìm kiếm</button>
+        </form>
+        <!-- <div class = "col-md-12 d-flex justify-content-center align-items-center">
             <button *ngIf="!toggleSearch" class = "btn btn-primary d-flex justify-content-center" style="height: 36px;" (click)="clickSearch()"><i class="nc-icon nc-minimal-down mr-1"></i> Tìm kiếm nâng cao</button>
             <button *ngIf="toggleSearch" class = "btn col-md-2 btn-primary" style="height: 36px;" (click)="clickSearch()"><i class="nc-icon nc-minimal-up mr-1"></i><label> Thu gọn</label></button>
         </div>
@@ -43,11 +43,11 @@
                 <option>Partime</option>
               </select>
             </div>
-          </div>
-          <div class = "col-md-12 d-flex justify-content-center align-items-center">
+          </div> -->
+          <!-- <div class = "col-md-12 d-flex justify-content-center align-items-center">
             <button class = "btn col-md-2" style="height: 36px;"><i class="nc-icon nc-zoom-split mr-1"></i><label> Tìm kiếm</label></button>
-        </div>
-        </div>    
+        </div> -->
+        <!-- </div>     -->
     </div>
 </div>
 <div class="row"> 
@@ -62,14 +62,14 @@
               <div class="col-md-10" style="line-height: 28px;font-size: 16px;">
                   <div class="title">{{educationItem.name}}</div>
                   <div class="company">
-                      <span>Đơn vị tổ chức: {{educationItem.company.description}}</span>
+                      <span>Đơn vị tổ chức: {{educationItem.company.user.fullName}}</span>
                   </div>
                   <div class="speaker">
                       <span>Diễn giả: {{educationItem.speaker}}</span>
                   </div>
                   <div class="time">
-                      <span>Thời gian bắt đầu: 09h15 15/05/2021
-                        <!-- {{educationItem.startDate}} -->
+                      <span>Thời gian bắt đầu: 
+                        {{educationItem.startDate | date: "dd/MM/yyyy"}}
                       </span>
                   </div>
                   <!-- <div class="seminar-description">
@@ -77,10 +77,10 @@
                   </div> -->
   
                   <div>
-                      <div>Thông tin liên hệ: Ms. Huệ: 0915772886</div>
+                      <div>Số điện thoại liên hệ: {{educationItem.company.user.mobile}}</div>
                   </div>
                   <div class="d-flex justify-content-end">
-                      <button mat-button type="button" class="btn btn-outline-primary" (click)="viewDetail(item)">Xem chi tiết</button>
+                      <button mat-button type="button" class="btn btn-outline-primary" (click)="viewDetail(educationItem)">Xem chi tiết</button>
                       <button type="button" class="btn btn-outline-primary ml-2" (click)="joinEducation(educationItem)">Đăng ký</button>
                   </div>
               </div>

@@ -1,9 +1,9 @@
 <div class = "form-group">
     <div class = "form-control col-md-12">
-        <div class = "col-md-12 d-flex justify-content-between align-items-center">
-          <input class = "form-control col-md-10" placeholder="Nhập tên doanh nghiệp">
-          <button class = "btn col-md-2 btn-primary"><i class="nc-icon nc-zoom-split"></i> Search</button>
-        </div>
+        <form class = "col-md-12 d-flex justify-content-between align-items-center" [formGroup]="form">
+          <input class = "form-control col-md-10" placeholder="Nhập tên doanh nghiệp" formControlName = "nameCompany">
+          <button class = "btn col-md-2 btn-primary" (click) = "searchCompany()"><i class="nc-icon nc-zoom-split"></i> Search</button>
+        </form>
          
     </div>
     

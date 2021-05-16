@@ -7,11 +7,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { DataServiceService } from 'app/service/data-service.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-student-info',
   templateUrl: './student-info.component.html',
-  styleUrls: ['./student-info.component.css']
+  styleUrls: ['./student-info.component.css'],
+  providers: [DatePipe],
 })
 
 export class StudentInfoComponent implements OnInit {
@@ -27,7 +29,8 @@ export class StudentInfoComponent implements OnInit {
     private studentService: LoginService,
     private getInfoService: GetInfoService,
     private dialog: MatDialog,
-    private dataService: DataServiceService
+    private dataService: DataServiceService,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -78,11 +81,12 @@ export class StudentInfoComponent implements OnInit {
      if (localStorage.getItem("common-info")) {
       this.userInfo = JSON.parse(localStorage.getItem("common-info"));
       this.avatar = this.userInfo.fullName.charAt(0);
+      const datePipe = this.datePipe.transform(this.userInfo.candidate.birthDay, 'dd/MM/yyyy')
       this.form.setValue({
         studentName: this.userInfo.fullName?this.userInfo.fullName: '',
         studentCode: this.userInfo.candidate.cardNumber?this.userInfo.candidate.cardNumber: '',
         gender: this.userInfo.candidate.gender?this.userInfo.candidate.gender:'',
-        birthday: this.userInfo.candidate.birthDay?this.userInfo.candidate.birthDay:'',
+        birthday: this.userInfo.candidate.birthDay?datePipe:'',
         email: this.userInfo.email?this.userInfo.email:'',
         address: this.userInfo.address?this.userInfo.address:''
       });
@@ -120,25 +124,27 @@ export class StudentInfoComponent implements OnInit {
   }
 
   submit() {
-
     let bodyuser = this.userInfo;
     bodyuser.address = this.form.value["address"];
     bodyuser.email = this.form.value["email"];
-    bodyuser.candidate.forte = this.educationForm.value["preferTechnology"];
-    bodyuser.candidate.personalAchievements = this.educationForm.value["archivement"];
-    bodyuser.candidate.personalExperience = this.educationForm.value["experience"];
-    let bodyParam = {
-      "address": this.form.value["address"],
-      "email": this.form.value["email"],
-      candidate: {
-        "forte": this.educationForm.value["preferTechnology"],
-        "personalAchievements": this.educationForm.value["archivement"],
-        "personalExperience": this.educationForm.value["experience"],
-      }
-    }
+    bodyuser.forte = this.educationForm.value["preferTechnology"];
+    bodyuser.personalAchievements = this.educationForm.value["archivement"];
+    bodyuser.personalExperience = this.educationForm.value["experience"];
+
+
+    // let bodyParam = {
+    //   "address": this.form.value["address"],
+    //   "email": this.form.value["email"],
+    //   candidate: {
+    //     "forte": this.educationForm.value["preferTechnology"],
+    //     "personalAchievements": this.educationForm.value["archivement"],
+    //     "personalExperience": this.educationForm.value["experience"],
+    //   }
+    // }
     this.getInfoService.updateUser(bodyuser, this.userInfo.id).subscribe(res => {
       console.log(res);
-      localStorage.setItem("common-info", bodyuser);
+      let common = JSON.stringify(bodyuser);
+      localStorage.setItem("common-info", common);
       // this.getInfoService.getUserById(this.userInfo.id).subscribe(res => {
       //   this.userInfo = res;
       // })

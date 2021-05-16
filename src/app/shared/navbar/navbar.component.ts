@@ -2,6 +2,8 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/co
 import { ROUTES } from '../../sidebar/sidebar.component';
 import { Router } from '@angular/router';
 import { Location} from '@angular/common';
+import { info } from 'node:console';
+import { jsonize } from '@ngui/map/services/util';
 
 @Component({
     moduleId: module.id,
@@ -17,6 +19,8 @@ export class NavbarComponent implements OnInit{
     private sidebarVisible: boolean;
 
     public isCollapsed = true;
+    student: any;
+    public nameStudent : string;
     @ViewChild("navbar-cmp", {static: false}) button;
 
     constructor(location:Location, private renderer : Renderer2, private element : ElementRef, private router: Router) {
@@ -32,6 +36,9 @@ export class NavbarComponent implements OnInit{
         this.router.events.subscribe((event) => {
           this.sidebarClose();
        });
+       this.student = localStorage.getItem("common-info");
+       this.nameStudent =  JSON.parse(this.student).fullName;
+       console.log(this.nameStudent);
     }
     getTitle(){
       var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -43,7 +50,7 @@ export class NavbarComponent implements OnInit{
               return this.listTitles[item].title;
           }
       }
-      return 'Việc Làm';
+      return '';
     }
     sidebarToggle() {
         if (this.sidebarVisible === false) {
@@ -91,5 +98,8 @@ export class NavbarComponent implements OnInit{
         }
 
       }
+      logOut(){
+        localStorage.setItem("session", "");
+    }
 
 }

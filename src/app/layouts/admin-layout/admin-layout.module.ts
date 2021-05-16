@@ -26,7 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule
   ],
   declarations: [
-    TinTdComponent,
+    // TinTdComponent,
     DashboardComponent,
     UserComponent,
     TableComponent,

@@ -4,17 +4,18 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-detail-education',
   templateUrl: './detail-education.component.html',
-  styleUrls: ['./detail-education.component.css']
+  styleUrls: ['./detail-education.component.css'],
 })
 export class DetailEducationComponent implements OnInit {
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<DetailEducationComponent>
+    @Inject(MAT_DIALOG_DATA) public data: {data: any},
+    public dialogRef: MatDialogRef<DetailEducationComponent>,
+
   ) { }
 
   ngOnInit(): void {
-    console.log("a");
+    console.log(this.data);
   }
 
 }

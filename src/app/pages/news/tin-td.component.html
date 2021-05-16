@@ -1,9 +1,9 @@
 <div class = "card  col-md-12">
   <div class = "card-body">
-    <div class = "col-md-12 d-flex justify-content-between align-items-center">
-      <input class = "form-control col-md-10" placeholder="Nhập tên công việc, vị trí ứng tuyển...">
-      <button class = "btn col-md-2 btn-primary"><i class="nc-icon nc-zoom-split"></i> Search</button>
-    </div>
+    <form class = "col-md-12 d-flex justify-content-between align-items-center" [formGroup] = "searchForm">
+      <input class = "form-control col-md-10" placeholder="Nhập tên công việc, vị trí ứng tuyển..." formControlName = "name">
+      <button class = "btn col-md-2 btn-primary" (click) = "searchJob()"><i class="nc-icon nc-zoom-split"></i> Tìm kiếm</button>
+    </form>
     <div class = " d-flex justify-content-end"   >
       <div class = "col-md-3 d-flex justify-content-end" >
         <i class="nc-icon nc-minimal-down"></i><label (click)="clickSearch()" *ngIf = "!toggleSearch"> Tìm kiếm nâng cao</label>
@@ -62,9 +62,9 @@
               <div class = "col-md-9 p-0 position-relative">
                 <div class = "col-md-12 p-0 d-flex justify-content-between">
                   <div class = " col-md-11 p-0">
-                      <h6 class = "card-title overflow-hide" title="{{item.newName}}" style="font-size: 16px;">{{item.name}}</h6> 
+                      <h6 class = "card-title overflow-hide" title="{{item.name}}" style="font-size: 16px;">{{item.name}}</h6> 
                       
-                    <h6 class = "card-title overflow-hide" title="{{item.companyName}}" style="font-size: 11px;">{{item.company.description}}</h6>
+                    <h6 class = "card-title overflow-hide" title="{{item.companyName}}" style="font-size: 11px;">{{item.company.user.fullName}}</h6>
                     <!-- <div class = 'card-text overflow-hide' title="{{item.description}}">{{item.description}}
                     </div> -->
                       
@@ -80,7 +80,7 @@
                   <span><i class="fas fa-users"></i> {{item.quantity}}</span>
                 </div>
                 <div class = "d-flex justify-content-between col-md-12 p-0">
-                  <span><i class="far fa-clock"></i> Cập nhật 19/04/2021</span>
+                  <span><i class="far fa-clock"></i> Cập nhật {{item.startTime| date: "dd/MM/yyyy"}}</span>
                   <a (click)="sendData(item)" class = "text-primary">Xem chi tiết</a>
                 </div>
               </div>

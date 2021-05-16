@@ -27,13 +27,13 @@
 
         <li class="nav-item btn-rotate" ngbDropdown placement="bottom-left">
           <a class="nav-link" ngbDropdownToggle id="navbarDropdownMenuLink" >
-            <i class="nc-icon nc-circle-10"></i>
+            {{nameStudent}}
             <p>
               <span class="d-lg-none d-md-block">Some Actions</span>
             </p>
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right">
-            <a ngbDropdownItem href="javascript:void(0)">Đăng xuất</a>
+            <a ngbDropdownItem href="#/login" (click) = "logOut()">Đăng xuất</a>
           </div>
         </li>
       </ul>
