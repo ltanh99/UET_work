@@ -14,6 +14,6 @@ export class LoginService {
     // const headers = {'contest-type': 'application/json'};
     // const body = student;
     // return this.http.post(this.apiUrl, body,{'headers':headers})
-    return this.http.get(this.apiUrl+"?username="+student.username+"&password="+student.password);
+    return this.http.post(this.apiUrl,{"username":student.username,"password":student.password});
   }
 }
