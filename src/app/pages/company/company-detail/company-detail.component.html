@@ -12,7 +12,7 @@
         </div>
         <div class = "col-md-2">
             <button class = "btn btn-outline-primary col-md-12">Theo dõi</button>
-            <button class = "btn btn-outline-primary col-md-12">Đánh giá</button>
+            <button class = "btn btn-primary col-md-12">Nhắn tin</button>
         </div>
         
         
@@ -43,6 +43,10 @@
                     <hr>
                 </div>
                 <div class="card-body">
+                    <div>
+                        <input class = "form-control" placeholder="nhập đánh giá">
+                    </div>
+                    <hr>
                     <div *ngFor="let rate of data?.company?.rates">
                         <div> <i class="fas fa-star"></i> {{rate.namePerson}}</div>
                         <div>{{rate.content}}</div>
