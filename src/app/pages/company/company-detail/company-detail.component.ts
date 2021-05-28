@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GetInfoService } from 'app/service/get-info.service';
 
 @Component({
@@ -12,12 +12,15 @@ export class CompanyDetailComponent implements OnInit {
   isIntroTab = true;
   companyId;
   data;
+  user;
   constructor(
-    private route: ActivatedRoute,
+    public router: Router,
+    public route: ActivatedRoute,
     public getInfo: GetInfoService
   ) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("common-info"));
     this.companyId = this.route.snapshot.queryParamMap.get("id");
     this.getInfo.getCompanyById(this.companyId).subscribe(res=> {
       this.data = res;
@@ -30,6 +33,10 @@ export class CompanyDetailComponent implements OnInit {
     } else {
       this.isIntroTab = false;
     }
+  }
+
+  gotoChat() {
+    this.router.navigate(['tin-nhan'],{queryParams: {id: 'c'+this.data.id +'s'+ this.user.id,name: this.data.fullName + '$' + this.data.id + '$' + this.user.fullName +'$'+ this.user.id, company: this.data.username}})
   }
 
 }
