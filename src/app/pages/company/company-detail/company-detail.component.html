@@ -42,15 +42,16 @@
                     <h3 class = "mb-0">Đánh giá</h3>
                     <hr>
                 </div>
-                <div class="card-body">
-                    <div>
-                        <input class = "form-control" placeholder="nhập đánh giá">
+                <div class="card-body" style="line-height: 25px;">
+                    <div style="display: flex;">
+                        <input class = "form-control" style="height: 40px;" placeholder="nhập đánh giá">
+                        <button type="button" class="btn btn-primary" style="margin: 0;margin-left:8px;height: 40px;width: 48%;padding: 4px;">Gửi</button>
                     </div>
                     <hr>
                     <div *ngFor="let rate of data?.company?.rates">
-                        <div> <i class="fas fa-star"></i> {{rate.namePerson}}</div>
+                        <div style="font-weight: bold;"> <i class="fas fa-star"></i> {{rate.namePerson}}</div>
                         <div>{{rate.content}}</div>
-                        <div><i class="fas fa-history"></i> 01/04/2021
+                        <div style="font-size: 12px;"><i class="fas fa-history"></i> {{rate.createdDate | date: "dd/MM/yyyy"}}
                             <!-- {{rate.createdDate}} -->
                         </div>
                         <hr>

@@ -72,8 +72,8 @@ export class MessageComponent implements OnInit, AfterViewChecked{
     // let channelId = 'job';
     // let channelName = 'Tuyển dụng FPT';
     try {
-      const response = await axios.post('http://localhost:5500/join', {
-      // const response = await axios.post('http://128.199.207.230:5500/join', {
+      // const response = await axios.post('http://localhost:5500/join', {
+      const response = await axios.post('http://128.199.207.230:5500/join', {
         username,
         channelId,
         channelName
