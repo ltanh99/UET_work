@@ -20,7 +20,7 @@ export class CompanyDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem("common-info"))
+    this.user = JSON.parse(localStorage.getItem("common-info"));
     this.companyId = this.route.snapshot.queryParamMap.get("id");
     this.getInfo.getCompanyById(this.companyId).subscribe(res=> {
       this.data = res;
