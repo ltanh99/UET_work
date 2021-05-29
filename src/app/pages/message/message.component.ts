@@ -22,15 +22,29 @@ export class MessageComponent implements OnInit, AfterViewChecked{
   currentUser: User;
   id;
   name;
+  companyUsername;
   chooseChannel;
   constructor(
     public route: ActivatedRoute) {}
   
-  ngOnInit() {
+  async ngOnInit() {
     this.id = this.route.snapshot.queryParamMap.get('id');
     this.name = this.route.snapshot.queryParamMap.get('name');
+    this.companyUsername = this.route.snapshot.queryParamMap.get('company');
     if (!this.id && !this.name) this.chooseChannel = 0
     this.joinChat(this.id,this.name);
+
+    if (this.companyUsername) {
+      // this.joinChat(this.id,this.companyUsername);
+      let id = this.route.snapshot.queryParamMap.get('id');
+      let name = this.route.snapshot.queryParamMap.get('name');
+      let companyUsername = this.route.snapshot.queryParamMap.get('company');
+      const response = await axios.post('http://128.199.207.230:5500/join', {
+        companyUsername,
+        id,
+        name
+      });
+    }
   }
 
   getRandomColor() {

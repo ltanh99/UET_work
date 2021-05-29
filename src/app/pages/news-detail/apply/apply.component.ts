@@ -15,6 +15,7 @@ export class ApplyComponent implements OnInit {
   // birthday = "27/12/1999";
   user: any;
   form: any;
+  formData: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ApplyComponent>,
@@ -35,25 +36,56 @@ export class ApplyComponent implements OnInit {
     });
   }
 
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      let file: File = fileList[0];
+      let formData: FormData = new FormData();
+      formData.append('file', file);
+      if (formData != null) {
+        this.formData = formData;
+      }
+    }
+  }
+
+
+
   apply() {
-    console.log("id", this.data);
+    // console.log("id", this.data);
     let profileBody = {
       "description": this.form.value.description?this.form.value.description:'',
-      "experience": this.form.value.experience?this.form.value.experience:'',
-      "favourite": this.form.value.preferTechnology?this.form.value.preferTechnology:'',
-      "jobExpect": this.form.value.jobExpect?this.form.value.jobExpect:'',
-      "name": 'CV'+this.data,
-      "salaryExpect": this.form.value.salaryExpect?this.form.value.salaryExpect:'',
-      "specialistId": this.user.candidate.specialist.id?this.user.candidate.specialist.id:''
+      "cvUrl": null
     }
-    this.getInfo.createProfile(this.user.id, profileBody).subscribe(res => {
-      let bodyJob = {
-        "profileId": res.id,
-        "question": this.form.value.question?this.form.value.question:''
-      }
-      this.getInfo.joinJobs(this.data, bodyJob).subscribe(resJob => {
-        console.log(resJob);
+    // this.getInfo.createProfile(this.user.id, profileBody).subscribe(res => {
+    //   let bodyJob = {
+    //     "profileId": res.id,
+    //     "question": this.form.value.question?this.form.value.question:''
+    //   }
+    //   this.getInfo.joinJobs(this.data, bodyJob).subscribe(resJob => {
+    //     console.log(resJob);
+    //   })
+    // })
+
+
+    if (this.formData) {
+      this.getInfo.uploadCV(this.formData).subscribe(res => {
+        if (res) {
+          console.log(res);
+          if (res["fileDownloadUri"]) {
+            profileBody.cvUrl = res["fileDownloadUri"];
+            this.getInfo.createProfile(this.user.id, profileBody).subscribe(res => {
+              let bodyJob = {
+                "profileId": res.id,
+                // "question": this.form.value.question ? this.form.value.question : ''
+              }
+              this.getInfo.joinJobs(this.data, bodyJob).subscribe(resJob => {
+                console.log(resJob);
+              })
+            })
+          }
+         
+        }
       })
-    })
+    }
   }
 }

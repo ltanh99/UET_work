@@ -17,7 +17,7 @@
             <div class="form-group m-0">
                 <span class="col-form-label">Chọn file CV của bạn</span>
                 <div>
-                    <input type = "file" style = "opacity: 1; position: relative;" placeholder="Chọn file CV của bạn">
+                    <input type = "file" (change)="fileChange($event)" style = "opacity: 1; position: relative;" accept=".pdf,.doc,.docx" placeholder="Chọn file CV của bạn">
                 </div>
 
             </div>
