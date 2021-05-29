@@ -12,7 +12,8 @@
     </div>
     <div class = "col-md-2">
         <button class = "btn btn-primary col-md-12" (click) = "openDialog()">Ứng tuyển</button>
-        <button class = "btn btn-outline-primary col-md-12" (click)="saveNew()"><i class="nc-icon nc-favourite-28"></i> Lưu tin</button>
+        <button class = "btn btn-primary col-md-12" *ngIf = "!toggle" (click)="saveNew()"><i class="far fa-heart"></i> Lưu tin</button>
+        <button class = "btn btn-outline-primary col-md-12" *ngIf = "toggle" (click)="saveNew()"><i class="fas fa-heart"></i> Bỏ lưu tin</button>
     </div>
 
 

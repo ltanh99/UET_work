@@ -21,12 +21,13 @@ export class NewsDetailComponent implements OnInit {
     public router: Router,
     public route: ActivatedRoute,
     public getInfo: GetInfoService) { }
-
+    toggle = false;
   ngOnInit(): void {
     // this.data.getMessage().subscribe(res=> {
     //   console.log(res);
     //   this.dataDetail = res;
     // })
+   
 
     this.user = JSON.parse(localStorage.getItem("common-info"))
 
@@ -38,8 +39,9 @@ export class NewsDetailComponent implements OnInit {
   }
 
   saveNew() {
+    this.toggle = !this.toggle;
     let currentSaveJob = localStorage.getItem("list-save-job");
-    let isHave = false;
+    var isHave = false;
     if (currentSaveJob) {
       let listcurrentSaveJob = JSON.parse(currentSaveJob);
       listcurrentSaveJob.forEach(element => {
