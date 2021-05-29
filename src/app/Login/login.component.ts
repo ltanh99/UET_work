@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, NgControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { NotifierService } from 'angular-notifier';
 import { DataServiceService } from 'app/service/data-service.service';
+import { ToastrService } from 'ngx-toastr';
 import { Student } from '../pages/student-info/student';
 import { LoginService } from '../service/login.service';
 @Component({
@@ -15,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private studentService: LoginService, 
     public router: Router,
+    private toastr: ToastrService,
     public dataService: DataServiceService) { }
 
 
@@ -54,6 +57,10 @@ export class LoginComponent implements OnInit {
     // this.userName = decoded.sub;
     // console.log(localStorage.getItem('token'));
     // this.router.navigate(['cong-viec']);
+    },
+    error => {
+      this.toastr.error('Đăng nhập thất bại');
+      // this.notifier.notify('error', 'Đăng nhập thất bại');
     })
   }
 
