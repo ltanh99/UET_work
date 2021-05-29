@@ -12,7 +12,7 @@
         </div>
         <div class = "col-md-2">
             <button class = "btn btn-outline-primary col-md-12">Theo dõi</button>
-            <button class = "btn btn-primary col-md-12">Nhắn tin</button>
+            <button class = "btn btn-primary col-md-12" (click)="goToMessage()">Nhắn tin</button>
         </div>
         
         
@@ -44,8 +44,8 @@
                 </div>
                 <div class="card-body" style="line-height: 25px;">
                     <div style="display: flex;">
-                        <input class = "form-control" style="height: 40px;" placeholder="nhập đánh giá">
-                        <button type="button" class="btn btn-primary" style="margin: 0;margin-left:8px;height: 40px;width: 48%;padding: 4px;">Gửi</button>
+                        <input class = "form-control" style="height: 40px;" placeholder="nhập đánh giá" [(ngModel)]="content">
+                        <button type="button" class="btn btn-primary" style="margin: 0;margin-left:8px;height: 40px;width: 48%;padding: 4px;" (click)="addRate()">Gửi</button>
                     </div>
                     <hr>
                     <div *ngFor="let rate of data?.company?.rates">

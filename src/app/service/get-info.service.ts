@@ -85,6 +85,10 @@ export class GetInfoService {
     return this.http.patch(this.apiEducation + 'api/v1/users/' + userid + '/change-password', { "newPassword": newPass, "oldPassword": oldPass });
   }
 
+  addRate(body,id) {
+    return this.http.post(this.apiEducation + 'api/v1/companies/'+id+'/rates', body);
+  }
+
   uploadCV(formData) {
 
     let headers = new HttpHeaders({
