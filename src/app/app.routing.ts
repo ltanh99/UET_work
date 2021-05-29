@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
 import { LoginComponent } from './login/login.component';
+
 export const AppRoutes: Routes = [
   {
     path: '',
@@ -26,6 +27,6 @@ export const AppRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'news',
+    redirectTo: 'cong-viec',
   }
 ]

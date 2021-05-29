@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.studentService.studentLogin(this.student).subscribe(res => {
       console.log(this.student.username);
       console.log(res);
-      if (res.username) {
+      if (res.username  && !res.isCompany) {
         localStorage.setItem('session', '');
         localStorage.setItem('common-info', '');
         let now = new Date();

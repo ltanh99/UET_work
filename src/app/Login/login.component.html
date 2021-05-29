@@ -5,13 +5,13 @@
             <h4>Đăng nhập</h4>
             <hr>
         </div>
+        
         <div class = "form-group card-body" (ngSubmit) = "login(student)">
-                <label>Tên đăng nhập</label><br>
-                <input class = "form-control" placeholder="Nhập tên đăng nhập" [(ngModel)]="student.username"><br>
-                <label >Mật khẩu</label><br>
-                <input type = "password" class = "form-control" placeholder="Nhập mật khẩu" [(ngModel)]="student.password" ><br>
-                <a class= "btn btn-primary col-md-12" type = "submit" (click) = "login(student)">Đăng nhập</a>
-            
+            <label>Tên đăng nhập</label><br>
+            <input class = "form-control" placeholder="Nhập tên đăng nhập" [(ngModel)]="student.username"><br>
+            <label >Mật khẩu</label><br>
+            <input type = "password" class = "form-control" placeholder="Nhập mật khẩu" [(ngModel)]="student.password" ><br>
+            <button class= "btn btn-primary col-md-12" type = "submit" (click) = "login(student)">Đăng nhập</button>
         </div>
         
     </div>
