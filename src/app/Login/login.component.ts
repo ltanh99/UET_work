@@ -45,6 +45,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['cong-viec']);
         this.dataService.setMessage(res);
       }
+      else {
+        this.toastr.error('Tên đăng nhập hoặc mật khẩu không đúng');
+      }
     //   token1 = res.token;
     //   localStorage.setItem('token', token1);
     //   localStorage.setItem('userName', student.username);
@@ -59,7 +62,7 @@ export class LoginComponent implements OnInit {
     // this.router.navigate(['cong-viec']);
     },
     error => {
-      this.toastr.error('Đăng nhập thất bại');
+      this.toastr.error('Tên đăng nhập hoặc mật khẩu không đúng');
       // this.notifier.notify('error', 'Đăng nhập thất bại');
     })
   }

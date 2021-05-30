@@ -53,7 +53,7 @@ export class GetInfoService {
     return this.http.get(this.apiEducation + 'api/v1/educates/companies' + id + '/educates');
   }
   createProfile(id, body): Observable<any> {
-    return this.http.post(this.apiEducation + '/api/v1/profiles/users/' + id, body);
+    return this.http.post(this.apiEducation + 'api/v1/profiles/users/' + id, body);
   }
   getEducationById(id): Observable<any> {
     return this.http.get(this.apiEducation + 'api/v1/educates/' + id);

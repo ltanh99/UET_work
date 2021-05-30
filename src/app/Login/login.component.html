@@ -10,8 +10,8 @@
             <label>Tên đăng nhập</label><br>
             <input class = "form-control" placeholder="Nhập tên đăng nhập" [(ngModel)]="student.username"><br>
             <label >Mật khẩu</label><br>
-            <input type = "password" class = "form-control" placeholder="Nhập mật khẩu" [(ngModel)]="student.password" ><br>
-            <button class= "btn btn-primary col-md-12" type = "submit" (click) = "login(student)">Đăng nhập</button>
+            <input type = "password" class = "form-control" placeholder="Nhập mật khẩu" [(ngModel)]="student.password"  (keyup.enter) = "login(student)"><br>
+            <button class= "btn btn-primary col-md-12" type = "submit" (click) = "login(student)" (keyup.enter) = "login(student)">Đăng nhập</button>
         </div>
         
     </div>
