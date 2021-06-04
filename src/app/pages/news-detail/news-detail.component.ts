@@ -1,3 +1,4 @@
+import { stringify } from '@angular/compiler/src/util';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,23 +15,54 @@ export class NewsDetailComponent implements OnInit {
 
   dataDetail: any;
   jobId;
+  user: any;
   constructor(private dialog: MatDialog,
     public data: DataServiceService,
     public router: Router,
     public route: ActivatedRoute,
     public getInfo: GetInfoService) { }
-
+    toggle = false;
   ngOnInit(): void {
     // this.data.getMessage().subscribe(res=> {
     //   console.log(res);
     //   this.dataDetail = res;
     // })
+   
+
+    this.user = JSON.parse(localStorage.getItem("common-info"))
 
     this.jobId = this.route.snapshot.queryParamMap.get('id');
     console.log(this.jobId);
     this.getInfo.getJobById(this.jobId).subscribe(res => {
       this.dataDetail = res;
     })
+  }
+
+  saveNew() {
+    this.toggle = !this.toggle;
+    let currentSaveJob = localStorage.getItem("list-save-job");
+    var isHave = false;
+    if (currentSaveJob) {
+      let listcurrentSaveJob = JSON.parse(currentSaveJob);
+      listcurrentSaveJob.forEach(element => {
+        if (element.id === this.user.id) {
+          isHave = true;
+          if (this.dataDetail) {
+            element?.list?.unshift(this.dataDetail);
+          }
+        }
+      });
+      if (!isHave) {
+        let listTmp = [];
+        listTmp.push(this.dataDetail);
+        listcurrentSaveJob.push({"id": this.user?.id, "list": listTmp});
+      }
+
+      localStorage.setItem("list-save-job",JSON.stringify(listcurrentSaveJob) );
+    } else {
+      localStorage.setItem("list-save-job",JSON.stringify([]));
+      this.saveNew();
+    }
   }
 
   openDialog(){

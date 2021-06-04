@@ -13,10 +13,11 @@ export class CompanyDetailComponent implements OnInit {
   companyId;
   data;
   user;
+  content;
   constructor(
+    private route: ActivatedRoute,
+    public getInfo: GetInfoService,
     public router: Router,
-    public route: ActivatedRoute,
-    public getInfo: GetInfoService
   ) { }
 
   ngOnInit(): void {
@@ -35,8 +36,26 @@ export class CompanyDetailComponent implements OnInit {
     }
   }
 
-  gotoChat() {
-    this.router.navigate(['tin-nhan'],{queryParams: {id: 'c'+this.data.id +'s'+ this.user.id,name: this.data.fullName + '$' + this.user.fullName, company: this.data.username}})
+  goToMessage() {
+    this.router.navigate(['tin-nhan'],{queryParams: {id: 'c'+ this.data.id + '$u'+ this.user.id,name: '$'+this.data.fullName+'$'+this.user.fullName}})
+  }
+
+  addRate() {
+    if (this.content) {
+      let body = {
+        "content": this.content,
+        "createdDate": new Date(),
+        "namePerson": this.user.fullName
+      }
+
+      this.getInfo.addRate(body, this.companyId).subscribe(res => {
+        if (res) {
+          this.getInfo.getCompanyById(this.companyId).subscribe(res=> {
+            this.data = res;
+          })
+        }
+      })
+    }
   }
 
 }

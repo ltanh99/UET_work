@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // initialize Stream Chat SDK
 
 const serverSideClient = new StreamChat(
-  "zdgqdc329s2n",
-  "yw48kvmuzkdvp49wvm6639eskmm3b6rm8jvjtm5gzxknck9mgq4hcz484ts3ypkf"
+  "uzgje3xjbrgq",
+  "hdff87ma8j529zqsef54szxuqj44c552aqtskjcpqnzqptjzws4etsu2p7shn7fn"
 );
 
 app.post('/create-team', async (req,res) => {
@@ -79,7 +79,7 @@ app.post('/join', async (req, res) => {
 
   return res
     .status(200)
-    .json({ user: { username }, token, api_key: "zdgqdc329s2n" });
+    .json({ user: { username }, token, api_key: "uzgje3xjbrgq" });
 });
 
 const server = app.listen(5500, () => {

@@ -12,17 +12,17 @@
         </div>
         <div class = "col-md-2">
             <button class = "btn btn-outline-primary col-md-12">Theo dõi</button>
-            <button class = "btn btn-outline-primary col-md-12">Đánh giá</button>
+            <button class = "btn btn-primary col-md-12" (click)="goToMessage()">Nhắn tin</button>
         </div>
-        
-        
+
+
     </div>
 </div>
     <div class = "pt-3 pb-0 mb-0">
         <ul class = "nav">
             <li class = "nav-item mr-3"  [ngClass]="{cssClick: isIntroTab}">
                 <div (click)="changeTab(0)" style = "font-size: 23px;">Giới thiệu</div>
-                
+
             </li>
             <li class = "nav-item" [ngClass]="{cssClick: !isIntroTab}">
                 <div (click)="changeTab(1)"  style = "font-size: 23px;">Tuyển dụng</div>
@@ -42,11 +42,16 @@
                     <h3 class = "mb-0">Đánh giá</h3>
                     <hr>
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="line-height: 25px;">
+                    <div style="display: flex;">
+                        <input class = "form-control" style="height: 40px;" placeholder="nhập đánh giá" [(ngModel)]="content">
+                        <button type="button" class="btn btn-primary" style="margin: 0;margin-left:8px;height: 40px;width: 48%;padding: 4px;" (click)="addRate()">Gửi</button>
+                    </div>
+                    <hr>
                     <div *ngFor="let rate of data?.company?.rates">
-                        <div> <i class="fas fa-star"></i> {{rate.namePerson}}</div>
+                        <div style="font-weight: bold;"> <i class="fas fa-star"></i> {{rate.namePerson}}</div>
                         <div>{{rate.content}}</div>
-                        <div><i class="fas fa-history"></i> 01/04/2021
+                        <div style="font-size: 12px;"><i class="fas fa-history"></i> {{rate.createdDate | date: "dd/MM/yyyy"}}
                             <!-- {{rate.createdDate}} -->
                         </div>
                         <hr>
@@ -54,5 +59,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>

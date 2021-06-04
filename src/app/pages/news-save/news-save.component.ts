@@ -13,13 +13,11 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./news-save.component.css']
 })
 export class NewsSaveComponent implements OnInit {
-  tintd: Array<any>;
+  tintd: any;
+  user: any;
   totalPage;
   pageArr: Array<any>=[];
   searchForm: any;
-
-
-  
   constructor(
     private getInfoService: GetInfoService,
     public router: Router,
@@ -31,17 +29,34 @@ export class NewsSaveComponent implements OnInit {
     this.searchForm = new FormGroup({
       name: new FormControl("", null),
     })
+
+    this.user = JSON.parse(localStorage.getItem("common-info"))
+
+    let tintdTmp = localStorage.getItem("list-save-job")? localStorage.getItem("list-save-job") : null;
+    if (tintdTmp) {
+      let listtd = JSON.parse(tintdTmp);
+      if (listtd) {
+        listtd.forEach(e => {
+          if (e.id === this.user.id) {
+            if (e.list) {
+              this.tintd = e?.list;
+            }
+          }
+        });
+      }
+    }
+    
     // this.getNews();
     // console.log(this.tintd);
     // let tmp = this.datePipe.transform(this.now,'dd-MM-yyyy');
     // this.upadetTime = tmp;
-    this.getInfoService.getJobs(1,20,"").subscribe(res=> {
-      this.tintd = res.rows;
-      this.totalPage = res.totalPage;
-      for (let i = 0; i <this.totalPage; i++) {
-        this.pageArr.push(i+1);
-      }
-    })
+    // this.getInfoService.getJobs(1,20,"").subscribe(res=> {
+    //   this.tintd = res.rows;
+    //   this.totalPage = res.totalPage;
+    //   for (let i = 0; i <this.totalPage; i++) {
+    //     this.pageArr.push(i+1);
+    //   }
+    // })
   }
 
   // getNews (){

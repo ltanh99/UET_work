@@ -35,7 +35,7 @@ export class MessageComponent implements OnInit, AfterViewChecked{
     this.joinChat(this.id,this.name);
 
     if (this.companyUsername) {
-      this.joinChat(this.id,this.companyUsername);
+      // this.joinChat(this.id,this.companyUsername);
       let id = this.route.snapshot.queryParamMap.get('id');
       let name = this.route.snapshot.queryParamMap.get('name');
       let companyUsername = this.route.snapshot.queryParamMap.get('company');

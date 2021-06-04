@@ -8,9 +8,10 @@ export class AuthService {
   constructor(public jwtHelper: JwtHelperService) { }
 
   public isAuthenticated(): Boolean {
-    // const token = localStorage.getItem('token');
-    // return !this.jwtHelper.isTokenExpired(token);
     const expireTime = localStorage.getItem('session');
     return (parseInt(expireTime) > (new Date()).getTime())
   }
 }
+
+// const token = localStorage.getItem('token');
+// return !this.jwtHelper.isTokenExpired(token);
