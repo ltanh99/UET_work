@@ -33,8 +33,8 @@ import { MessageComponent } from './pages/message/message.component';
 import { IntroductionComponent } from './pages/company/introduction/introduction.component';
 import { NewsOfCompanyComponent } from "./pages/company/news-of-company/news-of-company.component";
 import { ApplyComponent } from './pages/news-detail/apply/apply.component';
-import { NotifierModule } from "angular-notifier";
 import { TinTdComponent } from "./pages/news/tin-td.component";
+import { NotifierModule } from "angular-notifier";
 // import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({
@@ -65,7 +65,11 @@ import { TinTdComponent } from "./pages/news/tin-td.component";
     HttpClientModule,
     SidebarModule,
     NavbarModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-left',
+      preventDuplicates: true,
+    }),
     FooterModule,
     FixedPluginModule,
     NgbModule,

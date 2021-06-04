@@ -16,6 +16,8 @@ export class NewsDetailComponent implements OnInit {
   dataDetail: any;
   jobId;
   user: any;
+  // isSaved = false;
+  listSaved;
   constructor(private dialog: MatDialog,
     public data: DataServiceService,
     public router: Router,
@@ -23,20 +25,54 @@ export class NewsDetailComponent implements OnInit {
     public getInfo: GetInfoService) { }
     toggle = false;
   ngOnInit(): void {
-    // this.data.getMessage().subscribe(res=> {
-    //   console.log(res);
-    //   this.dataDetail = res;
-    // })
-   
-
-    this.user = JSON.parse(localStorage.getItem("common-info"))
+    this.user = JSON.parse(localStorage.getItem("common-info"));
+    this.listSaved = JSON.parse(localStorage.getItem("list-save-job"));
 
     this.jobId = this.route.snapshot.queryParamMap.get('id');
     console.log(this.jobId);
     this.getInfo.getJobById(this.jobId).subscribe(res => {
       this.dataDetail = res;
     })
+
+    if (this.listSaved) {
+      this.listSaved.forEach(element => {
+        if (element.id === this.user.id) {
+          if ( element.list && element.list.length > 0 ) {
+            element.list.forEach(e => {
+              if (e.id === +this.jobId) {
+                this.toggle = true;
+              }
+            });
+          }
+        }
+      });
+    }
+
   }
+
+  unSaveNew() {
+    this.toggle = !this.toggle;
+    if (this.listSaved) {
+      this.listSaved.forEach(element => {
+        if (element.id === this.user.id) {
+          if ( element.list && element.list.length > 0 ) {
+            element.list.forEach(e => {
+              if (e.id === +this.jobId) {
+                // this.toggle = true;
+                element.list = element.list.filter(function( obj ) {
+                  return obj.id !== e.id;
+              });
+              }
+            });
+          }
+        }
+      });
+    }
+
+    localStorage.setItem("list-save-job",JSON.stringify(this.listSaved) );
+  }
+
+ 
 
   saveNew() {
     this.toggle = !this.toggle;
