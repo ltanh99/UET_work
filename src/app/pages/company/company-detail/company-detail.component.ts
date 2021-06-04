@@ -36,7 +36,7 @@ export class CompanyDetailComponent implements OnInit {
   }
 
   gotoChat() {
-    this.router.navigate(['tin-nhan'],{queryParams: {id: 'c'+this.data.id +'s'+ this.user.id,name: this.data.fullName + '$' + this.data.id + '$' + this.user.fullName +'$'+ this.user.id, company: this.data.username}})
+    this.router.navigate(['tin-nhan'],{queryParams: {id: 'c'+this.data.id +'s'+ this.user.id,name: this.data.fullName + '$' + this.user.fullName, company: this.data.username}})
   }
 
 }

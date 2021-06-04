@@ -132,10 +132,25 @@ export class MessageComponent implements OnInit, AfterViewChecked{
             this.channelList.splice(index, 1);
             this.channelList.unshift(tmpChannel);
             this.chooseChannel = index;
+            
             // this.channelList[0] = item;
             // this.channelList[index] = tmpChannel;
           }
         })
+
+        if (this.companyUsername) {
+          var idx = this.channelList.indexOf('$');
+          while (idx != -1) {
+            // indices.push(idx);
+            let listName = this.channelList[idx].data?.name.split("$");
+            if (listName) {
+              this.channelList[idx].data.name = listName[1];
+            } else {
+              this.channelList[idx].data.name = 'Trao đổi riêng';
+            }
+            idx = this.channelList.indexOf('$', idx + 1);
+          }
+        }
       } else {
         this.channel = this.channelList[0];
       }
