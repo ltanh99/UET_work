@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Tham gia {{data.data.name}}</h2>
+<mat-dialog-content class="mat-typography">
+    <!-- <div class="d-flex justify-content-center">
+      <div class="">
+        <div id="profileImage">LA</div>
+      </div>
+    </div> -->
+      <div class="col-md-12" style="line-height: 28px;font-size: 16px;">
+        <div class="title"></div>
+        <div class="company">
+            <span>Đơn vị tổ chức: {{data.data.company.user.fullName}}</span>
+        </div>
+        <div class="speaker">
+            <span>Diễn giả: {{data.data.speaker}}</span>
+        </div>
+        <div class="time">
+            <span>Thời gian diễn ra: {{data.data.startDate| date: "dd/MM/yyyy"}}</span>
+        </div>
+        
+        <fieldset class="link">
+            <legend class="requier">Để tham gia buổi đào tạo bạn vui lòng cài đặt Zoom và tham gia tại link này
+            </legend>
+            <a target="_blank" href="{{data.data.linkLive}}" style="cursor: pointer;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;" title="{{data.data.linkLive}}">{{data.data.linkLive}}</a>
+        </fieldset>
+      </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end" style="margin-top: 20px;">
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-outline-primary" >Đóng</button>
+  </mat-dialog-actions>

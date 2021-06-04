@@ -28,5 +28,6 @@
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button type="button" class="btn btn-outline-primary ml-2">Đăng ký</button>
+  <button type="button" *ngIf="!data.data.registed" class="btn btn-outline-primary ml-2">Đăng ký</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-outline-primary">Đóng</button>
 </mat-dialog-actions>

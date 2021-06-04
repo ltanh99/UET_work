@@ -54,7 +54,13 @@ export class ApplyComponent implements OnInit {
     // console.log("id", this.data);
     let profileBody = {
       "description": this.form.value.description?this.form.value.description:'',
-      "cvUrl": null
+      "cvUrl": null,
+      "experience": 0,
+      "favourite": "string",
+      "jobExpect": "string",
+      "name": "string",
+      "salaryExpect": 0,
+      "specialistId": 1
     }
     // this.getInfo.createProfile(this.user.id, profileBody).subscribe(res => {
     //   let bodyJob = {

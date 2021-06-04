@@ -32,9 +32,9 @@ export class MessageComponent implements OnInit, AfterViewChecked{
     this.name = this.route.snapshot.queryParamMap.get('name');
     this.companyUsername = this.route.snapshot.queryParamMap.get('company');
     if (!this.id && !this.name) this.chooseChannel = 0
-    if (this.id && this.name) {
+    // if (this.id && this.name) {
       this.joinChat(this.id,this.name);
-    }
+    // }
 
     if (this.companyUsername) {
       // this.joinChat(this.id,this.companyUsername);
