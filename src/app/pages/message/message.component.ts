@@ -123,6 +123,22 @@ export class MessageComponent implements OnInit, AfterViewChecked{
         watch: true,
         state: true,
       });
+      this.channelList.forEach((item,index) => {
+        if (item?.data?.name.indexOf("--c") !== -1 && item?.data?.name.indexOf("--u") !== -1) {
+          let companyName;
+          let nameSplit = item?.data?.name.split('--u');
+          if (nameSplit) {
+            let companyNameSplit = nameSplit ? nameSplit[0] : 'Tin nhấn riêng';
+            if (companyNameSplit) {
+              companyName = companyNameSplit.split('--c')?companyNameSplit.split('--c')[1]: 'Tin nhấn riêng';
+            }
+          }
+
+          if (companyName) {
+            item.data.name = companyName;
+          }
+        }
+      })
       // this.channel = this.channelList[0];
       if(channelId) {
         this.channelList.forEach((item,index) => {

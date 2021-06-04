@@ -37,7 +37,7 @@ export class CompanyDetailComponent implements OnInit {
   }
 
   goToMessage() {
-    this.router.navigate(['tin-nhan'],{queryParams: {id: 'c'+ this.data.id + '$u'+ this.user.id,name: '$'+this.data.fullName+'$'+this.user.fullName}})
+    this.router.navigate(['tin-nhan'],{queryParams: {id: 'c'+ this.data.id + '-u'+ this.user.id,name: '--c'+this.data.fullName+'--u'+this.user.fullName, company: this.data.username}})
   }
 
   addRate() {
@@ -48,7 +48,7 @@ export class CompanyDetailComponent implements OnInit {
         "namePerson": this.user.fullName
       }
 
-      this.getInfo.addRate(body, this.companyId).subscribe(res => {
+      this.getInfo.addRate(body,this.data.id).subscribe(res => {
         if (res) {
           this.getInfo.getCompanyById(this.companyId).subscribe(res=> {
             this.data = res;
