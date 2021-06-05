@@ -32,9 +32,9 @@ export class MessageComponent implements OnInit, AfterViewChecked{
     this.name = this.route.snapshot.queryParamMap.get('name');
     this.companyUsername = this.route.snapshot.queryParamMap.get('company');
     if (!this.id && !this.name) this.chooseChannel = 0
-    if (this.id && this.name) {
+    // if (this.id && this.name) {
       this.joinChat(this.id,this.name);
-    }
+    // }
 
     if (this.companyUsername) {
       // this.joinChat(this.id,this.companyUsername);
@@ -126,6 +126,22 @@ export class MessageComponent implements OnInit, AfterViewChecked{
         watch: true,
         state: true,
       });
+      this.channelList.forEach((item,index) => {
+        if (item?.data?.name.indexOf("--c") !== -1 && item?.data?.name.indexOf("--u") !== -1) {
+          let companyName;
+          let nameSplit = item?.data?.name.split('--u');
+          if (nameSplit) {
+            let companyNameSplit = nameSplit ? nameSplit[0] : 'Tin nhấn riêng';
+            if (companyNameSplit) {
+              companyName = companyNameSplit.split('--c')?companyNameSplit.split('--c')[1]: 'Tin nhấn riêng';
+            }
+          }
+
+          if (companyName) {
+            item.data.name = companyName;
+          }
+        }
+      })
       // this.channel = this.channelList[0];
       this.channelList.forEach((item,index) => {
         if (item?.data?.name.indexOf("--c") !== -1 && item?.data?.name.indexOf("--u") !== -1) {
@@ -152,10 +168,25 @@ export class MessageComponent implements OnInit, AfterViewChecked{
             this.channelList.splice(index, 1);
             this.channelList.unshift(tmpChannel);
             this.chooseChannel = index;
+            
             // this.channelList[0] = item;
             // this.channelList[index] = tmpChannel;
           }
         })
+
+        if (this.companyUsername) {
+          var idx = this.channelList.indexOf('$');
+          while (idx != -1) {
+            // indices.push(idx);
+            let listName = this.channelList[idx].data?.name.split("$");
+            if (listName) {
+              this.channelList[idx].data.name = listName[1];
+            } else {
+              this.channelList[idx].data.name = 'Trao đổi riêng';
+            }
+            idx = this.channelList.indexOf('$', idx + 1);
+          }
+        }
       } else {
         this.channel = this.channelList[0];
       }

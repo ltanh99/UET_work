@@ -58,6 +58,11 @@ export class GetInfoService {
   getEducationById(id): Observable<any> {
     return this.http.get(this.apiEducation + 'api/v1/educates/' + id);
   }
+
+  getAllCandidateOfEducation(id): Observable<any> {
+    return this.http.get(this.apiEducation + 'api/v1/educates/' + id + '/candidates');
+  }
+
   getJobById(id): Observable<any> {
     return this.http.get(this.apiEducation + 'api/v1/jobs/' + id);
   }
@@ -90,7 +95,6 @@ export class GetInfoService {
   }
 
   uploadCV(formData) {
-
     let headers = new HttpHeaders({
       // 'Content-Type': 'multipart/form-data',
       'Accept': 'application/json'

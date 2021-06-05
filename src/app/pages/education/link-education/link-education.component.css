@@ -1,0 +1,21 @@
+.link {
+    width: 100%;
+    /* text-align: center; */
+    border: solid 1px #6c757d;
+    border-radius: 10px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    padding: 12px;
+    /* position: relative; */
+}
+
+.requier {
+    font-size: 14px;
+    margin-left: 0px;
+    text-align: center;
+    margin: 0;
+    width: 80%;
+}

@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { GetInfoService } from 'app/service/get-info.service';
 import { DetailEducationComponent } from './detail-education/detail-education.component';
+import { LinkEducationComponent } from './link-education/link-education.component';
 
 @Component({
   selector: 'app-education',
@@ -16,28 +17,48 @@ export class EducationComponent implements OnInit {
   listCompanyData: Array<any> = [];
   toggleSearch = false;
   form: any;
+  user: any;
   constructor(
     public dialog: MatDialog,
     public getInfoService: GetInfoService 
   ) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("common-info"));
     this.form = new FormGroup({
       searchEdu : new FormControl("", null),
     })
-          this.getInfoService.getEducation(1,20, '').subscribe(res => {
-            if (res) {
-              console.log(res);
-              this.listSeminar = res.rows
-            }
-          })
+    this.searchEdu();
+          // this.getInfoService.getEducation(1,20, '').subscribe(res => {
+          //   if (res) {
+          //     console.log(res);
+          //     this.listSeminar = res.rows
+          //   }
+          // })
     
   }
   searchEdu(){
+    // this.user = JSON.parse(localStorage.getItem("common-info"));
     this.getInfoService.getEducation(1,20, this.form.value["searchEdu"]).subscribe(res => {
       if (res) {
-        console.log(res);
-        this.listSeminar = res.rows
+        // console.log(res);
+        this.listSeminar = res.rows;
+        if (this.listSeminar) {
+          this.listSeminar.forEach(e => {
+            e.registed = false;
+            this.getInfoService.getAllCandidateOfEducation(e.id).subscribe(resp => {
+              if (resp) {
+                console.log(resp)
+                let candidates = resp.rows;
+                candidates.forEach(element => {
+                  if (element.user.id === this.user.id) {
+                    e.registed = true;
+                  }
+                });
+              }
+            })
+          })
+        }
       }
     })
   }
@@ -59,10 +80,21 @@ export class EducationComponent implements OnInit {
   }
 
   joinEducation(item) {
-    let user = JSON.parse(localStorage.getItem("common-info"));
-    this.getInfoService.joinEducation(user.id,item.id).subscribe(res => {
+    // let user = JSON.parse(localStorage.getItem("common-info"));
+    this.getInfoService.joinEducation(this.user.id,item.id).subscribe(res => {
       console.log(res);
     })
+  }
+
+  showLink(item) {
+    let dialogRef = this.dialog.open(LinkEducationComponent, {
+      width: '700px',
+      height: '400px',
+      data: {data: item},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

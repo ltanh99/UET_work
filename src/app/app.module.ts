@@ -35,6 +35,7 @@ import { NewsOfCompanyComponent } from "./pages/company/news-of-company/news-of-
 import { ApplyComponent } from './pages/news-detail/apply/apply.component';
 import { TinTdComponent } from "./pages/news/tin-td.component";
 import { NotifierModule } from "angular-notifier";
+import { LinkEducationComponent } from './pages/education/link-education/link-education.component';
 // import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({
@@ -54,7 +55,8 @@ import { NotifierModule } from "angular-notifier";
     IntroductionComponent,
     NewsOfCompanyComponent,
     ApplyComponent,
-    MessageComponent
+    MessageComponent,
+    LinkEducationComponent
   ],
   imports: [
     BrowserModule,

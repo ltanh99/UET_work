@@ -81,7 +81,8 @@
                   </div>
                   <div class="d-flex justify-content-end">
                       <button mat-button type="button" class="btn btn-outline-primary" (click)="viewDetail(educationItem)">Xem chi tiết</button>
-                      <button type="button" class="btn btn-outline-primary ml-2" (click)="joinEducation(educationItem)">Đăng ký</button>
+                      <button type="button" class="btn btn-outline-primary ml-2" *ngIf="!educationItem.registed" (click)="joinEducation(educationItem)">Đăng ký</button>
+                      <button type="button" class="btn btn-outline-primary ml-2" *ngIf="educationItem.registed" (click)="showLink(educationItem)">Tham gia</button>
                   </div>
               </div>
       </div>
