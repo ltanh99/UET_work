@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 // import { NotifierService } from 'angular-notifier';
 import { GetInfoService } from 'app/service/get-info.service';
 import { ToastrService } from 'ngx-toastr';
@@ -22,6 +23,7 @@ export class ChangePasswordComponent implements OnInit {
     public dialogRef: MatDialogRef<ChangePasswordComponent>,
     public getInfo: GetInfoService,
     private toastr: ToastrService,
+    public router: Router,
     // public notifierService: NotifierService
   ) {
 
@@ -44,6 +46,9 @@ export class ChangePasswordComponent implements OnInit {
     if(oldPass != this.password){
       this.toastr.error( 'Mật khẩu cũ không chính xác','Đổi mật khẩu thất bại');
     }else 
+    if(newPass == ""){
+      this.toastr.error( 'Mật khẩu mới không được để trống');
+    } else
     if(newPass == oldPass){
       this.toastr.error( 'Mật khẩu không được đặt trùng mật khẩu cũ','Đổi mật khẩu thất bại');
     }
@@ -58,11 +63,14 @@ export class ChangePasswordComponent implements OnInit {
         //   message: 'Thay đổi mật khẩu thành công',
         //   // id: 'THAT_NOTIFICATION_ID',
         // });
-        this.toastr.success('Thành công', 'Đổi mật khẩu');
+        this.toastr.success('Vui lòng đăng nhập lại!                                                                                                                                                                                                                                                           ', 'Đổi mật khẩu thành công');
         this.dialogRef.close();  
+        this.router.navigate(['login']);
+        localStorage.setItem("session", "");
+
       },
       error => {
-        this.toastr.error( 'Vui lòng nhập lại!','Đổi mật khẩu thất bại');
+        this.toastr.error( 'Có lỗi xảy ra. Bạn Vui lòng nhập lại!');
       }
       )
     }

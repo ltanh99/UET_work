@@ -31,6 +31,12 @@ export class LoginComponent implements OnInit {
   }
 
   login(student: Student){
+    if(this.student.username == ""){
+      this.toastr.error('Vui lòng nhập tên đăng nhập!');
+    }else 
+    if(this.student.password == ""){
+      this.toastr.error('Vui lòng nhập mật khẩu!');
+    }else{
 
     let token1: string;
     this.studentService.studentLogin(this.student).subscribe(res => {
@@ -66,6 +72,7 @@ export class LoginComponent implements OnInit {
       // this.notifier.notify('error', 'Đăng nhập thất bại');
     })
   }
+}
 
   addMinutes(date, minutes) {
     return new Date(date.getTime() + minutes*60000);

@@ -113,11 +113,11 @@ export class StudentInfoComponent implements OnInit {
     //   console.log(mes);
     //   this.normalInfomationForm["level"] = mes.candidate.level;
     // })
-    let token: string;
-    token = localStorage.getItem('token');
-    this.getInfoService.getInfo(studentInfo).subscribe(res => {
-      console.log(res);
-    })
+    // let token: string;
+    // token = localStorage.getItem('token');
+    // this.getInfoService.getInfo(studentInfo).subscribe(res => {
+    //   console.log(res);
+    // })
 
   }
 
