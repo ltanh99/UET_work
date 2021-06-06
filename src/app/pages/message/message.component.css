@@ -1,15 +1,8 @@
-.login {
-  position: absolute;
-  width: 100%;
-  max-width: 600px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
 .container {
   max-width: 1170px;
   margin: auto;
+  margin-bottom: 0;
 }
 
 img {
@@ -52,7 +45,7 @@ img {
 }
 
 .channel_heading h4 {
-  color: #05728f;
+  color: #51cbce;
   font-size: 21px;
   margin: auto;
 }
@@ -117,7 +110,7 @@ img {
 }
 
 .inbox_chat {
-  height: 550px;
+  height: 430px;
   overflow-y: scroll;
 }
 
@@ -165,7 +158,7 @@ img {
 }
 
 .sent_msg p {
-  background: #05728f none repeat scroll 0 0;
+  background: #51cbce none repeat scroll 0 0;
   border-radius: 3px;
   font-size: 14px;
   margin: 0;
@@ -199,7 +192,7 @@ img {
 }
 
 .msg_send_btn {
-  background: #05728f none repeat scroll 0 0;
+  background: #51cbce none repeat scroll 0 0;
   border: medium none;
   border-radius: 50%;
   color: #fff;
@@ -207,17 +200,17 @@ img {
   font-size: 17px;
   height: 33px;
   position: absolute;
-  right: 0;
+  right: 5px;
   top: 11px;
   width: 33px;
 }
 
 .messaging {
-  padding: 0 0 50px 0;
+  padding: 0 0 0px 0;
 }
 
 .msg_history {
-  height: 516px;
+  height: 430px;
   overflow-y: auto;
 }
 

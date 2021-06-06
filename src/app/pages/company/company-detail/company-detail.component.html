@@ -44,7 +44,7 @@
                 </div>
                 <div class="card-body" style="line-height: 25px;">
                     <div style="display: flex;">
-                        <input class = "form-control" style="height: 40px;" placeholder="nhập đánh giá" [(ngModel)]="content">
+                        <input class = "form-control" style="height: 40px;" placeholder="nhập đánh giá" [(ngModel)]="content"  (keyup.enter) = "addRate()">
                         <button type="button" class="btn btn-primary" style="margin: 0;margin-left:8px;height: 40px;width: 48%;padding: 4px;" (click)="addRate()">Gửi</button>
                     </div>
                     <hr>

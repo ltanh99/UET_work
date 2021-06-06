@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
 
 
    public student = new Student();
-   public userName;
   ngOnInit(): void {
     this.student.username = '';
     this.student.password = '';
@@ -31,38 +30,39 @@ export class LoginComponent implements OnInit {
   }
 
   login(student: Student){
+    if(this.student.username == ""){
+      this.toastr.error('Vui lòng nhập tên đăng nhập!');
+    }else 
+    if(this.student.password == ""){
+      this.toastr.error('Vui lòng nhập mật khẩu!');
+    }else{
 
     let token1: string;
     this.studentService.studentLogin(this.student).subscribe(res => {
       console.log(this.student.username);
       console.log(res);
+      localStorage.setItem('session', '');
+      localStorage.setItem('common-info', '');
       if (res.username  && !res.isCompany) {
-        localStorage.setItem('session', '');
-        localStorage.setItem('common-info', '');
+        
         let now = new Date();
         localStorage.setItem('session', this.addMinutes(now, 30).getTime().toString());
         localStorage.setItem('common-info', JSON.stringify(res));
         this.router.navigate(['cong-viec']);
         this.dataService.setMessage(res);
       }
-    //   token1 = res.token;
-    //   localStorage.setItem('token', token1);
-    //   localStorage.setItem('userName', student.username);
-    //   localStorage.setItem('password', student.password);
-    //   const helper = new JwtHelperService();
-
-    //   const decoded= helper.decodeToken(token1);
-
-    // console.log(decoded);
-    // this.userName = decoded.sub;
-    // console.log(localStorage.getItem('token'));
-    // this.router.navigate(['cong-viec']);
+      else{
+        this.toastr.error('Tên đăng nhập hoặc mật khẩu không đúng');
+      }
+    
     },
     error => {
-      this.toastr.error('Đăng nhập thất bại');
-      // this.notifier.notify('error', 'Đăng nhập thất bại');
+      localStorage.setItem('session', '');
+      localStorage.setItem('common-info', '');
+      this.toastr.error('Tên đăng nhập hoặc mật khẩu không đúng');
     })
   }
+}
 
   addMinutes(date, minutes) {
     return new Date(date.getTime() + minutes*60000);

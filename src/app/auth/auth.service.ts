@@ -12,6 +12,3 @@ export class AuthService {
     return (parseInt(expireTime) > (new Date()).getTime())
   }
 }
-
-// const token = localStorage.getItem('token');
-// return !this.jwtHelper.isTokenExpired(token);

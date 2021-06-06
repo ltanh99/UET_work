@@ -7,30 +7,29 @@ import { news } from '../ts/news';
   providedIn: 'root'
 })
 export class GetInfoService {
-  private apiUrl: string = "http://localhost:8080/search";
-  private apiNews: string = "http://localhost:8080/news";
-  // private apiEducation: string = "http://128.199.207.230:8585/RecruitmentAPI/";
+  // private apiUrl: string = "http://localhost:8080/search";
+  // private apiNews: string = "http://localhost:8080/news";
   private apiEducation: string = "http://202.92.4.184:8585/RecruitmentAPI/";
   constructor(private http: HttpClient) {
   }
 
-  getInfo(studentInfo: studentInfo): Observable<any> {
-    const headers = {
-      'Authorization': 'Bearer ' + localStorage.getItem('token'), 'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, HEAD, OPTIONS'
-    };
-    const body = studentInfo;
-    return this.http.post(this.apiUrl, body, { 'headers': headers });
-  }
-  getNews(): Observable<any> {
-    const headers = {
-      'contest-type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token'),
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, HEAD, OPTIONS'
-    };
-    const body = [{ "companyid": 1 }, { "companyid": 2 }];
-    return this.http.post(this.apiNews, body, { 'headers': headers });
-  }
+  // getInfo(studentInfo: studentInfo): Observable<any> {
+  //   const headers = {
+  //     'Authorization': 'Bearer ' + localStorage.getItem('token'), 'Access-Control-Allow-Origin': '*',
+  //     'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, HEAD, OPTIONS'
+  //   };
+  //   const body = studentInfo;
+  //   return this.http.post(this.apiUrl, body, { 'headers': headers });
+  // }
+  // getNews(): Observable<any> {
+  //   const headers = {
+  //     'contest-type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token'),
+  //     'Access-Control-Allow-Origin': '*',
+  //     'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, HEAD, OPTIONS'
+  //   };
+  //   const body = [{ "companyid": 1 }, { "companyid": 2 }];
+  //   return this.http.post(this.apiNews, body, { 'headers': headers });
+  // }
 
   updateUser(user, id): Observable<any> {
     return this.http.put(this.apiEducation + 'api/v1/users/' + id, user)
@@ -59,6 +58,11 @@ export class GetInfoService {
   getEducationById(id): Observable<any> {
     return this.http.get(this.apiEducation + 'api/v1/educates/' + id);
   }
+
+  getAllCandidateOfEducation(id): Observable<any> {
+    return this.http.get(this.apiEducation + 'api/v1/educates/' + id + '/candidates');
+  }
+
   getJobById(id): Observable<any> {
     return this.http.get(this.apiEducation + 'api/v1/jobs/' + id);
   }
@@ -91,7 +95,6 @@ export class GetInfoService {
   }
 
   uploadCV(formData) {
-
     let headers = new HttpHeaders({
       // 'Content-Type': 'multipart/form-data',
       'Accept': 'application/json'

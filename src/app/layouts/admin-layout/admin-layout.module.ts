@@ -5,8 +5,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
 
-
-import { TinTdComponent}            from '../../pages/news/tin-td.component';
 import { DashboardComponent }       from '../../pages/dashboard/dashboard.component';
 import { UserComponent }            from '../../pages/user/user.component';
 import { TableComponent }           from '../../pages/table/table.component';
@@ -26,7 +24,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule
   ],
   declarations: [
-    // TinTdComponent,
     DashboardComponent,
     UserComponent,
     TableComponent,
