@@ -9,6 +9,7 @@ import { news } from '../ts/news';
 export class GetInfoService {
   private apiUrl: string = "http://localhost:8080/search";
   private apiNews: string = "http://localhost:8080/news";
+  // private apiEducation: string = "http://128.199.207.230:8585/RecruitmentAPI/";
   private apiEducation: string = "http://202.92.4.184:8585/RecruitmentAPI/";
   constructor(private http: HttpClient) {
   }
@@ -53,7 +54,7 @@ export class GetInfoService {
     return this.http.get(this.apiEducation + 'api/v1/educates/companies' + id + '/educates');
   }
   createProfile(id, body): Observable<any> {
-    return this.http.post(this.apiEducation + '/api/v1/profiles/users/' + id, body);
+    return this.http.post(this.apiEducation + 'api/v1/profiles/users/' + id, body);
   }
   getEducationById(id): Observable<any> {
     return this.http.get(this.apiEducation + 'api/v1/educates/' + id);

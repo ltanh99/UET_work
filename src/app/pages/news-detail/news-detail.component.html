@@ -7,7 +7,7 @@
         <h2 class = "mb-0 pb-0">{{dataDetail?.name}}</h2>
         <h4 class = "mt-0">{{dataDetail?.company?.user?.fullName}}</h4>
         <p><i class="fas fa-map-marker-alt"></i> Địa chỉ: {{dataDetail?.company?.user?.address}}</p>
-        <p><i class="fas fa-history"></i> Hạn nộp hồ sơ: 30/06/2021
+        <p><i class="fas fa-history"></i> Hạn nộp hồ sơ:  {{dataDetail?.endTime| date: "dd/MM/yyyy"}}
         </p>
     </div>
     <div class = "col-md-2">
