@@ -32,10 +32,10 @@ export class NavbarComponent implements OnInit{
     ngOnInit(){
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         var navbar : HTMLElement = this.element.nativeElement;
-        this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
-        this.router.events.subscribe((event) => {
-          this.sidebarClose();
-       });
+        // this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+      //   this.router.events.subscribe((event) => {
+      //     // this.sidebarClose();
+      //  });
        this.student = localStorage.getItem("common-info");
        this.nameStudent =  JSON.parse(this.student).fullName;
        console.log(this.nameStudent);
@@ -52,39 +52,39 @@ export class NavbarComponent implements OnInit{
       }
       return '';
     }
-    sidebarToggle() {
-        if (this.sidebarVisible === false) {
-            this.sidebarOpen();
-        } else {
-            this.sidebarClose();
-        }
-      }
-      sidebarOpen() {
-          const toggleButton = this.toggleButton;
-          const html = document.getElementsByTagName('html')[0];
-          const mainPanel =  <HTMLElement>document.getElementsByClassName('main-panel')[0];
-          setTimeout(function(){
-              toggleButton.classList.add('toggled');
-          }, 500);
+    // sidebarToggle() {
+    //     if (this.sidebarVisible === false) {
+    //         this.sidebarOpen();
+    //     } else {
+    //         this.sidebarClose();
+    //     }
+    //   }
+    //   sidebarOpen() {
+    //       const toggleButton = this.toggleButton;
+    //       const html = document.getElementsByTagName('html')[0];
+    //       const mainPanel =  <HTMLElement>document.getElementsByClassName('main-panel')[0];
+    //       setTimeout(function(){
+    //           toggleButton.classList.add('toggled');
+    //       }, 500);
 
-          html.classList.add('nav-open');
-          if (window.innerWidth < 991) {
-            mainPanel.style.position = 'fixed';
-          }
-          this.sidebarVisible = true;
-      };
-      sidebarClose() {
-          const html = document.getElementsByTagName('html')[0];
-          const mainPanel =  <HTMLElement>document.getElementsByClassName('main-panel')[0];
-          if (window.innerWidth < 991) {
-            setTimeout(function(){
-              mainPanel.style.position = '';
-            }, 500);
-          }
-          this.toggleButton.classList.remove('toggled');
-          this.sidebarVisible = false;
-          html.classList.remove('nav-open');
-      };
+    //       html.classList.add('nav-open');
+    //       if (window.innerWidth < 991) {
+    //         mainPanel.style.position = 'fixed';
+    //       }
+    //       this.sidebarVisible = true;
+    //   };
+    //   sidebarClose() {
+    //       const html = document.getElementsByTagName('html')[0];
+    //       const mainPanel =  <HTMLElement>document.getElementsByClassName('main-panel')[0];
+    //       if (window.innerWidth < 991) {
+    //         setTimeout(function(){
+    //           mainPanel.style.position = '';
+    //         }, 500);
+    //       }
+    //       this.toggleButton.classList.remove('toggled');
+    //       this.sidebarVisible = false;
+    //       html.classList.remove('nav-open');
+    //   };
       collapse(){
         this.isCollapsed = !this.isCollapsed;
         const navbar = document.getElementsByTagName('nav')[0];
