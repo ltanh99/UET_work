@@ -53,6 +53,16 @@ export class TinTdComponent implements OnInit {
     })
   }
 
+  search() {
+      this.getInfoService.getJobs(1,20,this.searchForm?.value?.name?this.searchForm?.value?.name: "").subscribe(res=> {
+        this.tintd = res.rows;
+        this.totalPage = res.totalPage;
+        for (let i = 0; i <this.totalPage; i++) {
+          this.pageArr.push(i+1);
+        }
+      })
+  }
+
   // getNews (){
   //   this.news.getNews().subscribe(res => this.tintd = res);
     

@@ -4,12 +4,12 @@
       <input class = "form-control col-md-10" placeholder="Nhập tên công việc, vị trí ứng tuyển..." formControlName = "name">
       <button class = "btn col-md-2 btn-primary" (click) = "searchJob()"><i class="nc-icon nc-zoom-split"></i> Tìm kiếm</button>
     </form>
-    <div class = " d-flex justify-content-end"   >
+    <!-- <div class = " d-flex justify-content-end"   >
       <div class = "col-md-3 d-flex justify-content-end" >
         <i class="nc-icon nc-minimal-down"></i><label (click)="clickSearch()" *ngIf = "!toggleSearch"> Tìm kiếm nâng cao</label>
         <label (click)="clickSearch()" *ngIf = "toggleSearch"> Ẩn tìm kiếm nâng cao</label>
       </div>
-    </div>
+    </div> -->
       <div class = "col-md-12 d-flex justify-content-between align-items-center p-0" *ngIf = "toggleSearch">
         <div class="col-md-3">
           <p class = "mb-1">Thời gian cập nhật</p>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { GetInfoService } from 'app/service/get-info.service';
+import { ToastrService } from 'ngx-toastr';
 import { DetailEducationComponent } from './detail-education/detail-education.component';
 import { LinkEducationComponent } from './link-education/link-education.component';
 
@@ -20,6 +21,7 @@ export class EducationComponent implements OnInit {
   user: any;
   constructor(
     public dialog: MatDialog,
+    private toastr: ToastrService,
     public getInfoService: GetInfoService 
   ) { }
 
@@ -82,7 +84,11 @@ export class EducationComponent implements OnInit {
   joinEducation(item) {
     // let user = JSON.parse(localStorage.getItem("common-info"));
     this.getInfoService.joinEducation(this.user.id,item.id).subscribe(res => {
-      console.log(res);
+      // console.log(res);
+      this.searchEdu();
+      this.toastr.success('Đăng ký thành công');
+    }, error => {
+      this.toastr.success('Đăng ký thất bại');
     })
   }
 

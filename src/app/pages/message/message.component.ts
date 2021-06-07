@@ -38,14 +38,14 @@ export class MessageComponent implements OnInit, AfterViewChecked{
 
     if (this.companyUsername) {
       // this.joinChat(this.id,this.companyUsername);
-      let id = this.route.snapshot.queryParamMap.get('id');
-      let name = this.route.snapshot.queryParamMap.get('name');
-      let companyUsername = this.route.snapshot.queryParamMap.get('company');
+      let channelId = this.route.snapshot.queryParamMap.get('id');
+      let channelName = this.route.snapshot.queryParamMap.get('name');
+      let username = this.route.snapshot.queryParamMap.get('company');
       const response = await axios.post('http://128.199.207.230:5500/join', {
         // const response = await axios.post('http://localhost:5500/join', {
-        companyUsername,
-        id,
-        name
+          username,
+          channelId,
+          channelName
       });
     }
   }

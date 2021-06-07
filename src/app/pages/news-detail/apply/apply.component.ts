@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GetInfoService } from 'app/service/get-info.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-apply',
@@ -19,6 +20,7 @@ export class ApplyComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ApplyComponent>,
+    private toastr: ToastrService,
     private getInfo: GetInfoService
   ) { }
 
@@ -85,7 +87,11 @@ export class ApplyComponent implements OnInit {
                 // "question": this.form.value.question ? this.form.value.question : ''
               }
               this.getInfo.joinJobs(this.data, bodyJob).subscribe(resJob => {
-                console.log(resJob);
+                // console.log(resJob);
+                if (resJob?.status === 'SUCCESS') {
+                  this.toastr.success('Đăng ký thành công');
+                  this.dialogRef.close();
+                }
               })
             })
           }

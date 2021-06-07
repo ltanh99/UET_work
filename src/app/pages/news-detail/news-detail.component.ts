@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataServiceService } from 'app/service/data-service.service';
 import { GetInfoService } from 'app/service/get-info.service';
+import { ToastrService } from 'ngx-toastr';
 import { ApplyComponent } from './apply/apply.component';
 
 @Component({
@@ -21,6 +22,7 @@ export class NewsDetailComponent implements OnInit {
   constructor(private dialog: MatDialog,
     public data: DataServiceService,
     public router: Router,
+    private toastr: ToastrService,
     public route: ActivatedRoute,
     public getInfo: GetInfoService) { }
     toggle = false;
@@ -59,9 +61,11 @@ export class NewsDetailComponent implements OnInit {
             element.list.forEach(e => {
               if (e.id === +this.jobId) {
                 // this.toggle = true;
+                this.toastr.success('Hủy lưu thành công');
                 element.list = element.list.filter(function( obj ) {
                   return obj.id !== e.id;
               });
+              
               }
             });
           }
@@ -85,6 +89,7 @@ export class NewsDetailComponent implements OnInit {
           isHave = true;
           if (this.dataDetail) {
             element?.list?.unshift(this.dataDetail);
+            this.toastr.success('Lưu công việc thành công');
           }
         }
       });
