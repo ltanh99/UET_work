@@ -8,6 +8,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { DataServiceService } from 'app/service/data-service.service';
 import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-student-info',
@@ -30,7 +31,8 @@ export class StudentInfoComponent implements OnInit {
     private getInfoService: GetInfoService,
     private dialog: MatDialog,
     private dataService: DataServiceService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -111,11 +113,11 @@ export class StudentInfoComponent implements OnInit {
     //   console.log(mes);
     //   this.normalInfomationForm["level"] = mes.candidate.level;
     // })
-    let token: string;
-    token = localStorage.getItem('token');
-    this.getInfoService.getInfo(studentInfo).subscribe(res => {
-      console.log(res);
-    })
+    // let token: string;
+    // token = localStorage.getItem('token');
+    // this.getInfoService.getInfo(studentInfo).subscribe(res => {
+    //   console.log(res);
+    // })
 
   }
 
@@ -148,7 +150,14 @@ export class StudentInfoComponent implements OnInit {
       // this.getInfoService.getUserById(this.userInfo.id).subscribe(res => {
       //   this.userInfo = res;
       // })
-    });
+      this.toastr.success('Thành công', 'Cập nhật thông tin');
+      this.isEdit = !this.isEdit;
+    },
+    error => {
+      this.toastr.error('Thất bại', 'Cập nhật thông tin');
+    }
+    );
+
   }
 
   openDialog() {

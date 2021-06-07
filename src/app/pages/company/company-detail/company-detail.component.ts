@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetInfoService } from 'app/service/get-info.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-company-detail',
@@ -18,6 +19,7 @@ export class CompanyDetailComponent implements OnInit {
     private route: ActivatedRoute,
     public getInfo: GetInfoService,
     public router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -52,10 +54,17 @@ export class CompanyDetailComponent implements OnInit {
         if (res) {
           this.getInfo.getCompanyById(this.companyId).subscribe(res=> {
             this.data = res;
+            this.toastr.success('Thêm đánh giá thành công', 'Đánh giá');
+            // this.notifier.notify('error', 'Đăng nhập thất bại');
           })
+        }else {
+            this.toastr.error('Thêm đánh giá thất bại', 'Đánh giá');
+        
         }
       })
     }
+    this.content = "";
   }
+  
 
 }

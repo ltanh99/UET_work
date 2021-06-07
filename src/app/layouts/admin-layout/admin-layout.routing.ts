@@ -24,8 +24,7 @@ import { AuthGuardService  as AuthGuard  } from 'app/auth/auth-guard.service';
 
 export const AdminLayoutRoutes: Routes = [
 
-    { path: 'thong-tin-sinh-vien', component: StudentInfoComponent,
-    canActivate: [AuthGuard]},
+    { path: 'thong-tin-sinh-vien', component: StudentInfoComponent, canActivate: [AuthGuard]},
     { path: 'cong-viec',          component: TinTdComponent,canActivate: [AuthGuard]},
     { path: 'cong-viec/chi-tiet',     component: NewsDetailComponent,canActivate: [AuthGuard]},
     { path: 'cong-viec-da-luu',     component: NewsSaveComponent,canActivate: [AuthGuard]},
@@ -33,13 +32,4 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'cong-ty/chi-tiet',        component: CompanyDetailComponent,canActivate: [AuthGuard]},
     { path: 'dao-tao',        component: EducationComponent,canActivate: [AuthGuard]},
     { path: 'tin-nhan',        component: MessageComponent,canActivate: [AuthGuard]},
-
-    { path: 'dashboard',      component: DashboardComponent,canActivate: [AuthGuard] },
-    { path: 'user',           component: UserComponent,canActivate: [AuthGuard] },
-    { path: 'table',          component: TableComponent,canActivate: [AuthGuard] },
-    { path: 'typography',     component: TypographyComponent,canActivate: [AuthGuard] },
-    { path: 'icons',          component: IconsComponent,canActivate: [AuthGuard] },
-    { path: 'maps',           component: MapsComponent,canActivate: [AuthGuard] },
-    { path: 'notifications',  component: NotificationsComponent,canActivate: [AuthGuard] },
-    // { path: 'upgrade',        component: UpgradeComponent,canActivate: [AuthGuard] }
 ];

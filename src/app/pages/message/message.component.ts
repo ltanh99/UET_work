@@ -2,6 +2,7 @@ import { AfterViewChecked, ElementRef } from '@angular/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import axios from 'axios';
+import { ToastrService } from 'ngx-toastr';
 import { ChannelData, Message, StreamChat, User } from 'stream-chat';
 // import *  as StringeeClient from '../../../lib/latest.sdk.bundle.min.js';
 
@@ -25,16 +26,15 @@ export class MessageComponent implements OnInit, AfterViewChecked{
   companyUsername;
   chooseChannel;
   constructor(
+    private toastr: ToastrService,
     public route: ActivatedRoute) {}
   
   async ngOnInit() {
     this.id = this.route.snapshot.queryParamMap.get('id');
     this.name = this.route.snapshot.queryParamMap.get('name');
     this.companyUsername = this.route.snapshot.queryParamMap.get('company');
-    if (!this.id && !this.name) this.chooseChannel = 0
-    // if (this.id && this.name) {
-      this.joinChat(this.id,this.name);
-    // }
+    if (!this.id || !this.name) this.chooseChannel = 0;
+    this.joinChat(this.id,this.name);
 
     if (this.companyUsername) {
       // this.joinChat(this.id,this.companyUsername);
@@ -110,12 +110,7 @@ export class MessageComponent implements OnInit, AfterViewChecked{
 
       const channel = this.chatClient.channel('team', 'job');
       await channel.watch();
-      // this.channel = channel;
-      // this.messages = channel.state.messages;
-      // this.channel.on('message.new', event => {
-      //   this.messages = [...this.messages, event.message];
-      // });
-
+  
       const filter = {
         type: 'team',
         members: { $in: [`${this.currentUser.me["id"]}`] },
@@ -142,23 +137,7 @@ export class MessageComponent implements OnInit, AfterViewChecked{
           }
         }
       })
-      // this.channel = this.channelList[0];
-      this.channelList.forEach((item,index) => {
-        if (item?.data?.name.indexOf("--c") !== -1 && item?.data?.name.indexOf("--u") !== -1) {
-          let companyName;
-          let nameSplit = item?.data?.name.split('--u');
-          if (nameSplit) {
-            let companyNameSplit = nameSplit ? nameSplit[0] : 'Tin nhấn riêng';
-            if (companyNameSplit) {
-              companyName = companyNameSplit.split('--c')?companyNameSplit.split('--c')[1]: 'Tin nhấn riêng';
-            }
-          }
 
-          if (companyName) {
-            item.data.name = companyName;
-          }
-        }
-      })
       if(channelId) {
         this.channelList.forEach((item,index) => {
          
@@ -167,7 +146,7 @@ export class MessageComponent implements OnInit, AfterViewChecked{
             let tmpChannel = item;
             this.channelList.splice(index, 1);
             this.channelList.unshift(tmpChannel);
-            this.chooseChannel = index;
+            this.chooseChannel = 0;
             
             // this.channelList[0] = item;
             // this.channelList[index] = tmpChannel;
@@ -202,17 +181,30 @@ export class MessageComponent implements OnInit, AfterViewChecked{
   }
 
   async sendMessage() {
+    
     if (this.newMessage.trim() === '') {
+      this.newMessage = this.newMessage.trim();
       return;
     }
-
     try {
+      this.channelList.forEach((item,index) => {
+         
+        if (item.id == this.channel.id) {
+          let tmpChannel = item;
+          this.channelList.splice(index, 1);
+          this.channelList.unshift(tmpChannel);
+          this.chooseChannel = 0;
+        }
+      })
       await this.channel.sendMessage({
         text: this.newMessage,
       });
+
+      
       this.newMessage = '';
     } catch (err) {
       console.log(err);
+      this.toastr.error('Có lỗi xảy ra, bạn vui lòng thử lại sau!');
     }
   }
 }
