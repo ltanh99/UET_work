@@ -23,12 +23,12 @@ export class TinTdComponent implements OnInit {
   pageArr: Array<any>=[];
   searchForm: any;
 
-  img = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlFx0pzEoOcvEJv49Qe2cDBGaa8nL2UtCsGQ&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlFx0pzEoOcvEJv49Qe2cDBGaa8nL2UtCsGQ&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJgW6m0i824p7j57H8jfagYDo4jC75xsAhA&usqp=CAU"
+//   img = [
+//     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlFx0pzEoOcvEJv49Qe2cDBGaa8nL2UtCsGQ&usqp=CAU",
+//     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlFx0pzEoOcvEJv49Qe2cDBGaa8nL2UtCsGQ&usqp=CAU",
+//     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJgW6m0i824p7j57H8jfagYDo4jC75xsAhA&usqp=CAU"
 
-]
+// ]
   constructor(
     private getInfoService: GetInfoService,
     public router: Router,
@@ -51,6 +51,16 @@ export class TinTdComponent implements OnInit {
         this.pageArr.push(i+1);
       }
     })
+  }
+
+  search() {
+      this.getInfoService.getJobs(1,20,this.searchForm?.value?.name?this.searchForm?.value?.name: "").subscribe(res=> {
+        this.tintd = res.rows;
+        this.totalPage = res.totalPage;
+        for (let i = 0; i <this.totalPage; i++) {
+          this.pageArr.push(i+1);
+        }
+      })
   }
 
   // getNews (){

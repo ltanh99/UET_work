@@ -16,7 +16,7 @@
             <div class = "card-body d-flex col-md-12">
               <div class = "d-flex justify-content-start align-items-center col-md-3 pl-0">
                   <img 
-                  src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlFx0pzEoOcvEJv49Qe2cDBGaa8nL2UtCsGQ&usqp=CAU">
+                  src = {{item?.company?.avatarUrl}}>
               </div>
               <div class = "col-md-9 p-0 position-relative">
                 <div class = "col-md-12 p-0 d-flex justify-content-between">
@@ -48,23 +48,5 @@
         </div> 
       </div>          
     </div>
-    <!-- <div class = "d-flex justify-content-center">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item" *ngFor="let item of pageArr"><a class="page-link" href="#">{{item}}</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-        </nav>
-    </div> -->
+    
 </div>

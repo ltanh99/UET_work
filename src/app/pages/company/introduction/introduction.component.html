@@ -19,7 +19,7 @@
 <div class = "mt-5">
     <h3 class = "d-flex justify-content-center">VIDEO GIỚI THIỆU</h3>
     <div class = "d-flex justify-content-center">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/g42VaFGZXsY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                </div>
+        <iframe width="560" height="315" [src]="data?.company?.videoUrl | safe:'resourceUrl'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                </div>
     
 </div>
 <!-- <div id = "demo" class = "mt-5 carousel slide" data-ride="carousel">

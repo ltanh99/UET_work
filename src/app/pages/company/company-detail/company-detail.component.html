@@ -1,12 +1,15 @@
+
 <div>
-<div class = "cover">
-    <div style = "height: 256px"></div>
-    <div class = "d-flex justify-content-between align-items-center form-control bg-light">
-        <div class = "col-md-3 d-flex justify-content-start align-items-center div-ava">
+    <div>
+        <img style = "width: 100%; height: 396px"
+        src = {{data?.company?.backgroundUrl}}>
+    </div>
+    <div class = "d-flex justify-content-between align-items-center form-control bg-light ml-0 mr-0">
+        <div class = "col-md-2 d-flex justify-content-center align-items-center div-ava ml-0 pl-0 pr-0">
             <img class = "ava"
-                src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlFx0pzEoOcvEJv49Qe2cDBGaa8nL2UtCsGQ&usqp=CAU">
+                src = {{data?.company?.avatarUrl}} style="width: 140px;height: auto;position: static;">
         </div>
-        <div class = "col-md-7">
+        <div class = "col-md-8">
             <h2 class = "mb-4 pb-0">{{data?.fullName}}</h2>
             <p ><i class="nc-icon nc-pin-3"></i> Địa chỉ: {{data?.address}}</p>
         </div>

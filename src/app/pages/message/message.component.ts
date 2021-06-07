@@ -11,7 +11,7 @@ import { ChannelData, Message, StreamChat, User } from 'stream-chat';
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css']
 })
-export class MessageComponent implements OnInit, AfterViewChecked{
+export class MessageComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   title = 'angular-chat';
   channel: ChannelData;
@@ -27,25 +27,25 @@ export class MessageComponent implements OnInit, AfterViewChecked{
   chooseChannel;
   constructor(
     private toastr: ToastrService,
-    public route: ActivatedRoute) {}
-  
+    public route: ActivatedRoute) { }
+
   async ngOnInit() {
     this.id = this.route.snapshot.queryParamMap.get('id');
     this.name = this.route.snapshot.queryParamMap.get('name');
     this.companyUsername = this.route.snapshot.queryParamMap.get('company');
     if (!this.id || !this.name) this.chooseChannel = 0;
-    this.joinChat(this.id,this.name);
+    this.joinChat(this.id, this.name);
 
     if (this.companyUsername) {
       // this.joinChat(this.id,this.companyUsername);
-      let id = this.route.snapshot.queryParamMap.get('id');
-      let name = this.route.snapshot.queryParamMap.get('name');
-      let companyUsername = this.route.snapshot.queryParamMap.get('company');
+      let channelId = this.route.snapshot.queryParamMap.get('id');
+      let channelName = this.route.snapshot.queryParamMap.get('name');
+      let username = this.route.snapshot.queryParamMap.get('company');
       const response = await axios.post('http://128.199.207.230:5500/join', {
         // const response = await axios.post('http://localhost:5500/join', {
-        companyUsername,
-        id,
-        name
+        username,
+        channelId,
+        channelName
       });
     }
   }
@@ -66,11 +66,11 @@ export class MessageComponent implements OnInit, AfterViewChecked{
 
   scrollToBottom(): void {
     try {
-        this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch(err) { }                 
-}
-  changeChat(e?,i?) {
-    console.log(e);
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+  }
+  changeChat(e?, i?) {
+    // console.log(e);
     // if (e.data) {
     //   this.joinChat(e.data.id, e.data.name);
     // }
@@ -79,10 +79,26 @@ export class MessageComponent implements OnInit, AfterViewChecked{
     this.channel.on('message.new', event => {
       this.messages = [...this.messages, event.message];
     });
+    this.channelList.forEach((item, index) => {
+      if (item?.data?.name.indexOf("--c") !== -1 && item?.data?.name.indexOf("--u") !== -1) {
+        let companyName;
+        let nameSplit = item?.data?.name.split('--u');
+        if (nameSplit) {
+          let companyNameSplit = nameSplit ? nameSplit[0] : 'Tin nhấn riêng';
+          if (companyNameSplit) {
+            companyName = companyNameSplit.split('--c') ? companyNameSplit.split('--c')[1] : 'Tin nhấn riêng';
+          }
+        }
+
+        if (companyName) {
+          item.data.name = companyName;
+        }
+      }
+    })
 
     this.chooseChannel = i;
   }
-  async joinChat(channelId,channelName) {
+  async joinChat(channelId, channelName) {
 
     // const { username } = this;
     let username = JSON.parse(localStorage.getItem("common-info"))["username"];
@@ -110,7 +126,7 @@ export class MessageComponent implements OnInit, AfterViewChecked{
 
       const channel = this.chatClient.channel('team', 'job');
       await channel.watch();
-  
+
       const filter = {
         type: 'team',
         members: { $in: [`${this.currentUser.me["id"]}`] },
@@ -121,14 +137,14 @@ export class MessageComponent implements OnInit, AfterViewChecked{
         watch: true,
         state: true,
       });
-      this.channelList.forEach((item,index) => {
+      this.channelList.forEach((item, index) => {
         if (item?.data?.name.indexOf("--c") !== -1 && item?.data?.name.indexOf("--u") !== -1) {
           let companyName;
           let nameSplit = item?.data?.name.split('--u');
           if (nameSplit) {
             let companyNameSplit = nameSplit ? nameSplit[0] : 'Tin nhấn riêng';
             if (companyNameSplit) {
-              companyName = companyNameSplit.split('--c')?companyNameSplit.split('--c')[1]: 'Tin nhấn riêng';
+              companyName = companyNameSplit.split('--c') ? companyNameSplit.split('--c')[1] : 'Tin nhấn riêng';
             }
           }
 
@@ -138,16 +154,16 @@ export class MessageComponent implements OnInit, AfterViewChecked{
         }
       })
 
-      if(channelId) {
-        this.channelList.forEach((item,index) => {
-         
+      if (channelId) {
+        this.channelList.forEach((item, index) => {
+
           if (item.id == channelId) {
             this.channel = item;
             let tmpChannel = item;
             this.channelList.splice(index, 1);
             this.channelList.unshift(tmpChannel);
             this.chooseChannel = 0;
-            
+
             // this.channelList[0] = item;
             // this.channelList[index] = tmpChannel;
           }
@@ -169,7 +185,7 @@ export class MessageComponent implements OnInit, AfterViewChecked{
       } else {
         this.channel = this.channelList[0];
       }
-      
+
       this.messages = this.channel.state.messages;
       this.channel.on('message.new', event => {
         this.messages = [...this.messages, event.message];
@@ -181,14 +197,14 @@ export class MessageComponent implements OnInit, AfterViewChecked{
   }
 
   async sendMessage() {
-    
+
     if (this.newMessage.trim() === '') {
       this.newMessage = this.newMessage.trim();
       return;
     }
     try {
-      this.channelList.forEach((item,index) => {
-         
+      this.channelList.forEach((item, index) => {
+
         if (item.id == this.channel.id) {
           let tmpChannel = item;
           this.channelList.splice(index, 1);
@@ -200,7 +216,7 @@ export class MessageComponent implements OnInit, AfterViewChecked{
         text: this.newMessage,
       });
 
-      
+
       this.newMessage = '';
     } catch (err) {
       console.log(err);

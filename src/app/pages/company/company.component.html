@@ -15,17 +15,17 @@
         <div class = "col-md-4 ml-0 mb-0 p-3"  *ngFor = "let company of companies, let i = index">
           <div class = "card mb-0" >
               <div class = "card-header">
-                <img class = "img-cover" style = "height: 142px; width: 100%" src = {{cover[i]}}>
+                <img class = "img-cover" style = "height: 142px; width: 100%" src = {{company.company.backgroundUrl}}>
                               </div>
             <div class = "card-body">
               <div class = "d-flex">
-                <div class = "d-flex justify-content-start align-items-top col-md-4 pl-0">
+                <div class = "d-flex justify-content-start align-items-center col-md-4 pl-0">
                   <img class = "ava-company"
-                  src = {{img[i]}}>
+                  src = {{company.company.avatarUrl}}>
                 </div>
                 <div class = " col-md-8 p-0">
                   <div class = "d-flex justify-content-between">
-                    <h4 class = "card-title mt-0" >{{company.fullName}}</h4> 
+                    <h4 class = "card-title mt-0" title = {{company.fullName}} >{{company.fullName}}</h4> 
                   </div>
                 </div>
               </div>

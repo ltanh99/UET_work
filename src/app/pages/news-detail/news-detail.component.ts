@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataServiceService } from 'app/service/data-service.service';
 import { GetInfoService } from 'app/service/get-info.service';
+import { ToastrService } from 'ngx-toastr';
 import { ApplyComponent } from './apply/apply.component';
 
 @Component({
@@ -16,11 +17,14 @@ export class NewsDetailComponent implements OnInit {
   dataDetail: any;
   jobId;
   user: any;
+  disableApply = false;
   // isSaved = false;
   listSaved;
+  listCandidate;
   constructor(private dialog: MatDialog,
     public data: DataServiceService,
     public router: Router,
+    private toastr: ToastrService,
     public route: ActivatedRoute,
     public getInfo: GetInfoService) { }
     toggle = false;
@@ -33,6 +37,20 @@ export class NewsDetailComponent implements OnInit {
     this.getInfo.getJobById(this.jobId).subscribe(res => {
       this.dataDetail = res;
     })
+
+    this.getInfo.getCandidatesByJob(this.jobId).subscribe(res => {
+      if (res) {
+        this.listCandidate = res.rows;
+        if (this.listCandidate.length > 0) {
+          this.listCandidate.forEach(element => {
+            if (element?.user?.id === this.user?.id) {
+              this.disableApply = true;
+            }
+          });
+        }
+      }
+    })
+
 
     if (this.listSaved) {
       this.listSaved.forEach(element => {
@@ -59,9 +77,11 @@ export class NewsDetailComponent implements OnInit {
             element.list.forEach(e => {
               if (e.id === +this.jobId) {
                 // this.toggle = true;
+                this.toastr.success('Hủy lưu thành công');
                 element.list = element.list.filter(function( obj ) {
                   return obj.id !== e.id;
               });
+              
               }
             });
           }
@@ -85,6 +105,7 @@ export class NewsDetailComponent implements OnInit {
           isHave = true;
           if (this.dataDetail) {
             element?.list?.unshift(this.dataDetail);
+            this.toastr.success('Lưu công việc thành công');
           }
         }
       });
@@ -102,13 +123,17 @@ export class NewsDetailComponent implements OnInit {
   }
 
   openDialog(){
-    let dialogRef = this.dialog.open(ApplyComponent, {
-      width: '500px',
-      height: '410px',
-      data: this.jobId
-    });
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    if (!this.disableApply) {
+      let dialogRef = this.dialog.open(ApplyComponent, {
+        width: '500px',
+        height: '450px',
+        data: this.dataDetail,
+      });
+      dialogRef.afterClosed().subscribe(result => {
+      });
+    } else {
+      this.toastr.error("Bạn đã đăng ký công việc này");
+    }
   }
   gotoChat() {
     this.router.navigate(['tin-nhan'],{queryParams: {id: 'job'+this.dataDetail.id,name: this.dataDetail.name}})

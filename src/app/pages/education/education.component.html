@@ -57,7 +57,7 @@
               <div class="col-md-2">
                   <!-- <img src="..." class="rounded" alt="..."> -->
                   <div class = "mt-4"><img 
-                    src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlFx0pzEoOcvEJv49Qe2cDBGaa8nL2UtCsGQ&usqp=CAU"></div>
+                    src = {{educationItem?.company?.avatarUrl}}></div>
               </div>
               <div class="col-md-10" style="line-height: 28px;font-size: 16px;">
                   <div class="title">{{educationItem.name}}</div>
@@ -68,8 +68,8 @@
                       <span>Diễn giả: {{educationItem.speaker}}</span>
                   </div>
                   <div class="time">
-                      <span>Thời gian bắt đầu: 8h00 
-                        {{educationItem.startDate | date: "dd/MM/yyyy"}}
+                      <span>Thời gian bắt đầu:
+                        {{educationItem?.startDate | date: "hh:mm a dd/MM/yyyy"}}
                       </span>
                   </div>
                   <!-- <div class="seminar-description">
@@ -80,7 +80,7 @@
                       <div>Số điện thoại liên hệ: {{educationItem.company.user.mobile}}</div>
                   </div>
                   <div class="d-flex justify-content-end">
-                      <button mat-button type="button" class="btn btn-outline-primary" (click)="viewDetail(educationItem)">Xem chi tiết</button>
+                      <!-- <button mat-button type="button" class="btn btn-outline-primary" (click)="viewDetail(educationItem)">Xem chi tiết</button> -->
                       <button type="button" class="btn btn-outline-primary ml-2" *ngIf="!educationItem.registed" (click)="joinEducation(educationItem)">Đăng ký</button>
                       <button type="button" class="btn btn-outline-primary ml-2" *ngIf="educationItem.registed" (click)="showLink(educationItem)">Tham gia</button>
                   </div>

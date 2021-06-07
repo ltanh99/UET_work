@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GetInfoService } from 'app/service/get-info.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-apply',
@@ -9,7 +10,6 @@ import { GetInfoService } from 'app/service/get-info.service';
   styleUrls: ['./apply.component.css']
 })
 export class ApplyComponent implements OnInit {
-  work = "FPT Software tuyển dụng";
   // fullname = "Nguyễn Ngọc Giỏi";
   // gender = "Nữ";
   // birthday = "27/12/1999";
@@ -19,6 +19,7 @@ export class ApplyComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ApplyComponent>,
+    private toastr: ToastrService,
     private getInfo: GetInfoService
   ) { }
 
@@ -62,19 +63,9 @@ export class ApplyComponent implements OnInit {
       "salaryExpect": 0,
       "specialistId": 1
     }
-    // this.getInfo.createProfile(this.user.id, profileBody).subscribe(res => {
-    //   let bodyJob = {
-    //     "profileId": res.id,
-    //     "question": this.form.value.question?this.form.value.question:''
-    //   }
-    //   this.getInfo.joinJobs(this.data, bodyJob).subscribe(resJob => {
-    //     console.log(resJob);
-    //   })
-    // })
-
-
+  
     if (this.formData) {
-      this.getInfo.uploadCV(this.formData).subscribe(res => {
+      this.getInfo.uploadCV(this.formData).subscribe(res => {{}
         if (res) {
           console.log(res);
           if (res["fileDownloadUri"]) {
@@ -84,14 +75,26 @@ export class ApplyComponent implements OnInit {
                 "profileId": res.id,
                 "question": ""
               }
-              this.getInfo.joinJobs(this.data, bodyJob).subscribe(resJob => {
-                console.log(resJob);
+              this.getInfo.joinJobs(this.data.id, bodyJob).subscribe(resJob => {
+                // console.log(resJob);
+                if (resJob?.status === 'SUCCESS') {
+                  this.toastr.success('Ứng tuyển thành công');
+                  this.dialogRef.close();
+                } else {
+                  this.toastr.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
+                }
               })
             })
+          }else {
+            this.toastr.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
           }
          
+        }else {
+          this.toastr.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
         }
       })
+    }else {
+      this.toastr.warning('Vui lòng nhập đủ thông tin!');
     }
   }
 }
