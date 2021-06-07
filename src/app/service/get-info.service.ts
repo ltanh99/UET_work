@@ -59,6 +59,11 @@ export class GetInfoService {
     return this.http.get(this.apiEducation + 'api/v1/educates/' + id);
   }
 
+  getCandidatesByJob(id): Observable<any> {
+    const body = {};
+    return this.http.post(this.apiEducation + "api/v1/jobs/"+id+"/profiles", body);
+   }
+
   getAllCandidateOfEducation(id): Observable<any> {
     return this.http.get(this.apiEducation + 'api/v1/educates/' + id + '/candidates');
   }
