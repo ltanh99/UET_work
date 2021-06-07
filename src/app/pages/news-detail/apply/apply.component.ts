@@ -10,7 +10,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./apply.component.css']
 })
 export class ApplyComponent implements OnInit {
-  work = "FPT Software tuyển dụng";
   // fullname = "Nguyễn Ngọc Giỏi";
   // gender = "Nữ";
   // birthday = "27/12/1999";
@@ -64,19 +63,9 @@ export class ApplyComponent implements OnInit {
       "salaryExpect": 0,
       "specialistId": 1
     }
-    // this.getInfo.createProfile(this.user.id, profileBody).subscribe(res => {
-    //   let bodyJob = {
-    //     "profileId": res.id,
-    //     "question": this.form.value.question?this.form.value.question:''
-    //   }
-    //   this.getInfo.joinJobs(this.data, bodyJob).subscribe(resJob => {
-    //     console.log(resJob);
-    //   })
-    // })
-
-
+  
     if (this.formData) {
-      this.getInfo.uploadCV(this.formData).subscribe(res => {
+      this.getInfo.uploadCV(this.formData).subscribe(res => {{}
         if (res) {
           console.log(res);
           if (res["fileDownloadUri"]) {
@@ -86,18 +75,26 @@ export class ApplyComponent implements OnInit {
                 "profileId": res.id,
                 // "question": this.form.value.question ? this.form.value.question : ''
               }
-              this.getInfo.joinJobs(this.data, bodyJob).subscribe(resJob => {
+              this.getInfo.joinJobs(this.data.id, bodyJob).subscribe(resJob => {
                 // console.log(resJob);
                 if (resJob?.status === 'SUCCESS') {
-                  this.toastr.success('Đăng ký thành công');
+                  this.toastr.success('Ứng tuyển thành công');
                   this.dialogRef.close();
+                } else {
+                  this.toastr.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
                 }
               })
             })
+          }else {
+            this.toastr.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
           }
          
+        }else {
+          this.toastr.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
         }
       })
+    }else {
+      this.toastr.warning('Vui lòng nhập đủ thông tin!');
     }
   }
 }

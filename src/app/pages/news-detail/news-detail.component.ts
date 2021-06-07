@@ -126,8 +126,8 @@ export class NewsDetailComponent implements OnInit {
     if (!this.disableApply) {
       let dialogRef = this.dialog.open(ApplyComponent, {
         width: '500px',
-        height: '410px',
-        data: this.jobId
+        height: '450px',
+        data: this.dataDetail,
       });
       dialogRef.afterClosed().subscribe(result => {
       });

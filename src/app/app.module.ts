@@ -36,6 +36,7 @@ import { ApplyComponent } from './pages/news-detail/apply/apply.component';
 import { TinTdComponent } from "./pages/news/tin-td.component";
 import { NotifierModule } from "angular-notifier";
 import { LinkEducationComponent } from './pages/education/link-education/link-education.component';
+import { SafePipeModule } from "safe-pipe";
 // import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({
@@ -78,7 +79,8 @@ import { LinkEducationComponent } from './pages/education/link-education/link-ed
     FormsModule,
     ReactiveFormsModule,
     NotifierModule,
-    MatDialogModule
+    MatDialogModule,
+    SafePipeModule
   ],
   entryComponents: [
     // DetailEducationComponent,

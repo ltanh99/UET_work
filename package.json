@@ -48,6 +48,7 @@
     "ngx-bootstrap": "^6.2.0",
     "ngx-toastr": "13.1.0",
     "rxjs": "6.6.3",
+    "safe-pipe": "^1.0.3",
     "stream-chat": "^3.8.0",
     "stringee-chat-js-sdk": "^0.2.0",
     "tslib": "2.0.2",

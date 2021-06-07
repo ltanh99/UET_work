@@ -17,14 +17,14 @@ export class CompanyComponent implements OnInit {
 
   form: any;
   companies;
-  cover = [
-    "https://cdn.nhanlucnganhluat.vn/uploads/images/74c337f8/720-400/2018-11/cong-ty-tnhh-phan-mem-fpt-softwave-vingarden-1.jpg"
-  , "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLZLEuZFwzQ-Qytvg4SmNc09rtU0CVp1KbAA&usqp=CAU"
-  ]
-  img = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlFx0pzEoOcvEJv49Qe2cDBGaa8nL2UtCsGQ&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJgW6m0i824p7j57H8jfagYDo4jC75xsAhA&usqp=CAU"
+  // cover = [
+  //   "https://cdn.nhanlucnganhluat.vn/uploads/images/74c337f8/720-400/2018-11/cong-ty-tnhh-phan-mem-fpt-softwave-vingarden-1.jpg"
+  // , "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLZLEuZFwzQ-Qytvg4SmNc09rtU0CVp1KbAA&usqp=CAU"
+  // ]
+  // img = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlFx0pzEoOcvEJv49Qe2cDBGaa8nL2UtCsGQ&usqp=CAU",
+  //   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJgW6m0i824p7j57H8jfagYDo4jC75xsAhA&usqp=CAU"
 
-  ]
+  // ]
   ngOnInit(): void {
     this.form = new FormGroup({
       nameCompany: new FormControl("", null),

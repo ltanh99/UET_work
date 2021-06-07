@@ -57,7 +57,7 @@
             <div class = "card-body d-flex col-md-12">
               <div class = "d-flex justify-content-start align-items-center col-md-3 pl-0">
                   <img 
-                  src = {{img[i]}}>
+                  src = {{item.company.avatarUrl}}>
               </div>
               <div class = "col-md-9 p-0 position-relative">
                 <div class = "col-md-12 p-0 d-flex justify-content-between">
@@ -75,9 +75,9 @@
                   </div>-->
                 </div> 
                 <div class = "d-flex justify-content-between col-md-12 p-0">
-                  <span><i class="fas fa-dollar-sign"></i> {{item.income}}</span>
-                  <span><i class="fas fa-history"></i> {{item.formOfWork}}</span>
-                  <span><i class="fas fa-users"></i> {{item.quantity}}</span>
+                  <span title = "Mức lương: {{item.income}}"><i class="fas fa-dollar-sign"></i> {{item.income}}</span>
+                  <span title = "Hình thức làm việc: {{item.formOfWork}}"><i class="fas fa-history"></i> {{item.formOfWork}}</span>
+                  <span title = "Số lượng cần tuyển: {{item.quantity}}"><i class="fas fa-users"></i> {{item.quantity}}</span>
                 </div>
                 <div class = "d-flex justify-content-between col-md-12 p-0">
                   <span><i class="far fa-clock"></i> Cập nhật {{item.startTime| date: "dd/MM/yyyy"}}</span>
