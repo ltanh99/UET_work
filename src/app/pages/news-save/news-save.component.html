@@ -1,7 +1,7 @@
 <div class = "card  col-md-12">
   <div class = "card-body">
     <form class = "col-md-12 d-flex justify-content-between align-items-center" [formGroup] = "searchForm">
-      <input class = "form-control col-md-10" placeholder="Nhập tên công việc, vị trí ứng tuyển..." formControlName = "name">
+      <input class = "form-control col-md-10" placeholder="Nhập tên công việc, vị trí ứng tuyển..." formControlName = "name" style="height: 38px;margin-right: 4px;">
       <button class = "btn col-md-2 btn-primary" (click) = "searchJob()"><i class="nc-icon nc-zoom-split"></i> Tìm kiếm</button>
     </form>
     
@@ -9,7 +9,7 @@
 </div>
 </div>
 <div>
-    <div class = "container">
+    <div class = "container-fluid">
       <div class = " row d-flex justify-content-between" >
         <div class = "col-md-6 pt-3 pl-1 pr-1" *ngFor = "let item of tintd" >
           <div class = "card" >
